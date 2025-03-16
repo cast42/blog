@@ -1,0 +1,7 @@
+site_name: My MkDocs Blog
+theme:
+  name: material
+nav:
+  - Home: index.md
+  - Blog:
+      - First Post: posts/first-post.md
