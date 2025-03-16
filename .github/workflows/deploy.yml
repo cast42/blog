@@ -1,0 +1,25 @@
+name: Deploy MkDocs Blog
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Dependencies
+        run: pip install mkdocs-material mkdocs-blog-plugin mkdocs-awesome-pages-plugin
+
+      - name: Build and Deploy
+        run: mkdocs gh-deploy --force
