@@ -21,5 +21,14 @@ jobs:
       - name: Install Dependencies
         run: pip install mkdocs-material mkdocs-blog-plugin mkdocs-awesome-pages-plugin
 
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: Build and Deploy
-        run: mkdocs gh-deploy --force
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          git remote set-url origin https://x-access-token:${GH_PAT}@github.com/cast42/blog.git
+          mkdocs gh-deploy --force
