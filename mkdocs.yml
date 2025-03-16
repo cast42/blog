@@ -4,4 +4,9 @@ theme:
 nav:
   - Home: index.md
   - Blog:
-      - First Post: posts/first-post.md
+
+# Plugins
+plugins:
+  - blog
+  - search:
+      separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
