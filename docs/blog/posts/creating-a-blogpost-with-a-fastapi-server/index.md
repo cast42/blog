@@ -1,7 +1,6 @@
 ---
 title: Creating a blogpost with a FastAPI server
-created_at: 2025-03-16T17:06:04.342487
-last_modified: 2025-03-16T17:06:04.342517
+date: 2025-03-16
 ---
 
 I copied the idea from [https://github.com/koaning/flask-blogposter/tree/main](https://github.com/koaning/flask-blogposter/tree/main)
