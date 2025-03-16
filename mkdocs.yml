@@ -1,4 +1,4 @@
-site_name: My MkDocs Blog
+site_name: Blog of cast42
 theme:
   name: material
 nav:
