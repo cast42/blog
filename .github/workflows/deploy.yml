@@ -19,7 +19,7 @@ jobs:
           python-version: '3.9'
 
       - name: Install Dependencies
-        run: pip install mkdocs-material mkdocs-blog-plugin mkdocs-awesome-pages-plugin
+        run: pip install mkdocs-material mkdocs-rss-plugin mkdocs-glightbox
 
       - name: Configure Git
         run: |
