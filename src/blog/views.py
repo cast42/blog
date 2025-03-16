@@ -126,6 +126,7 @@ async def save_post(data: PostData):
     # Add metadata
     metadata = {
         "title": title,
+        "date": datetime.now().strftime("%Y-%m-%d"),
         "created_at": datetime.now().isoformat(),
         "last_modified": datetime.now().isoformat(),
     }

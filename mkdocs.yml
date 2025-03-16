@@ -1,25 +1,85 @@
 # Based on https://github.com/mkdocs-material/create-blog/blob/main/mkdocs.yml
+# and on https://github.com/antocuni/antocuni.github.io/tree/main
 
 site_name: Blog of cast42
 site_description: Blog of cast42
 site_url: https://cast42.github.io/blog/
+docs_dir: blog
+
 theme:
+  logo: assets/logo.svg
+  favicon: assets/logo.svg
   name: material
+  custom_dir: overrides
   features:
+    - navigation.sections
     - navigation.indexes
-
-
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - header.autohide
 
 nav:
-  - Home: index.md
+  - Blog: index.md
+  - About: about.md
   - Tags: tags.md
-  - Blog:
-     - blog/index.md
-     - blog/tags.md
+  - RSS feed: feed_rss_updated.xml
 
 plugins:
-  - search
   - blog:
-      blog_toc: true
-      archive_date_format: MMMM yyyy
+      blog_dir: .
+      post_excerpt: required
+      pagination: true
+      post_url_format: "{date}/{slug}"
+      post_date_format: medium
+      categories: true
+
+      draft: true # include drafts
+
+  - search
+  - tags
+  - glightbox:
+      auto_caption: true
+
+  - rss:
+      match_path: "posts/.*"
+      comments_path: "#__comments"
+      date_from_meta:
+        as_creation: date.created
+        as_update: date.updated
+
+  # redirects for the old antocuni.eu
+  - redirects:
+      redirect_maps:
+        'training.html': about.md
+        'talks.html': about.md
+        'projects.html': about.md
+        'contact.html': about.md
+        'it/training.html': about.md
+        'it/talks.html': about.md
+        'it/projects.html': about.md
+        'it/contact.html': about.md
+        'it/index.html': about.md
+
+
+# https://squidfunk.github.io/mkdocs-material/setup/extensions/
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.details
+  - pymdownx.blocks.caption
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+
 
