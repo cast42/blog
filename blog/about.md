@@ -1,6 +1,6 @@
 # About me
 
-![](assets/lode_nachtergaele.jpg){ align=right }
+![](assets/lode_nachtergaele.jpeg){ align=right }
 I am a Belgian machine learning engineer.
 I am an Italy-based consultant with years of experience with both big brands
 and small business. I care about building solid and extensible designs, and
