@@ -1,1 +1,1 @@
-# Welcome to my MkDocs blog
+# Blog

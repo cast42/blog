@@ -1,11 +1,25 @@
+# Based on https://github.com/mkdocs-material/create-blog/blob/main/mkdocs.yml
+
 site_name: Blog of cast42
+site_description: Blog of cast42
+site_url: https://cast42.github.io/blog/
 theme:
   name: material
+  features:
+    - navigation.indexes
+
+
+
 nav:
   - Home: index.md
+  - Tags: tags.md
+  - Blog:
+     - blog/index.md
+     - blog/tags.md
 
-# Plugins
 plugins:
-  - blog
-  - search:
-      separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+  - search
+  - blog:
+      blog_toc: true
+      archive_date_format: MMMM yyyy
+
