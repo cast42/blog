@@ -13,7 +13,7 @@ from fastapi.templating import Jinja2Templates
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
-POSTS_DIR = Path("docs/posts")
+POSTS_DIR = Path("blog/posts")
 if not POSTS_DIR.exists():
     POSTS_DIR.mkdir()
 
