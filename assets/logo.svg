@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none">
+    <!-- TV Screen -->
+    <rect x="40" y="50" width="120" height="80" rx="10" stroke="#333" stroke-width="5" fill="#222" />
+    <line x1="50" y1="140" x2="70" y2="180" stroke="#333" stroke-width="5" />
+    <line x1="150" y1="140" x2="130" y2="180" stroke="#333" stroke-width="5" />
+    
+    <!-- Broadcast Waves -->
+    <path d="M160,100 C150,70 120,40 100,40 C80,40 50,70 40,100" stroke="#ffcc00" stroke-width="3" fill="none" />
+    
+    <!-- Text: 42 -->
+    <text x="80" y="100" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#fff">42</text>
+</svg>
