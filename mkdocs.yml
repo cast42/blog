@@ -7,6 +7,7 @@ site_url: https://cast42.github.io/blog/
 docs_dir: blog
 
 nav:
+  - Blog: index.md
   - About: about.md
   - Tags: tags.md
   - RSS feed: feed_rss_updated.xml

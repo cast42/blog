@@ -2,8 +2,16 @@
 
 [https://cast42.github.io/blog/](https://cast42.github.io/blog/)
 
-To test the development:
+To create an editor with the fast api editor run:
 
 ```bash
 uv run fastapi dev src/blog/asgi.py
 ```
+
+To preview the blog locally:
+
+```bash
+mkdocs serve
+```
+
+To see the preview, open a browser to port 8000 on localhost [http://127.0.0.1:8000/blog/](http://127.0.0.1:8000/blog/)
