@@ -23,3 +23,5 @@ And **OpenAI**:
 - Buys ~~Cursour~~ ![Windsurf]([url](url))
 
 Seeing all those signals, we conclude: the AI future will be open!
+
+<!-- more -->
