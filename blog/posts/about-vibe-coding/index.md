@@ -5,6 +5,9 @@ created_at: 2025-05-25T10:44:22.941081
 last_modified: 2025-05-25T10:44:22.941087
 ---
 
+
+![Impact of vibe coding on product desing](vibe_coding.png)
+
 Software development is changing rapidly overnight. Indeed:
 
 1. OpenAI announced Codex [https://openai.com/index/introducing-codex/](https://openai.com/index/introducing-codex/) on May 16, 2025, for their $200/month Pro users.
