@@ -21,6 +21,4 @@ This gives rise to a lot of FUD (fear, uncertainty, and doubt) from the corporat
 
 Even with the expected “valley of disappointment” that may follow (because users tend to overreact to the initial prototype, which will likely need to be rewritten from scratch), in the end, the chance of building a product that resonates with users is much higher and it will be ready sooner—if the same good old software process is followed, from prototype to Minimum Viable Product (MVP) to Version 1 accepted by users.
 
-![Impact of vibe coding on product desing](https://cast42.github.io/blog/assets/vibe_coding.png)
-
 <!-- more -->
