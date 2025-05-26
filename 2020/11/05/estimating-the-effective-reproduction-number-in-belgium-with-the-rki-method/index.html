@@ -1,0 +1,1494 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Blog of cast42">
+      
+      
+      
+        <link rel="canonical" href="https://cast42.github.io/blog/2020/11/05/estimating-the-effective-reproduction-number-in-belgium-with-the-rki-method/">
+      
+      
+        <link rel="prev" href="../../01/estimating-the-effective-reproduction-number-in-belgium/">
+      
+      
+        <link rel="next" href="../../../12/09/comparing-rt-numbers-for-belgium-on-09-12-2020/">
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="RSS feed of updated content" href="../../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Estimating the effective reproduction number in Belgium with the RKI method - Blog of cast42</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#estimating-the-effective-reproduction-number-in-belgium-with-the-rki-method" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Blog of cast42" class="md-header__button md-logo" aria-label="Blog of cast42" data-md-component="logo">
+      
+  <img src="../../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Blog of cast42
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Estimating the effective reproduction number in Belgium with the RKI method
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Blog of cast42" class="md-nav__button md-logo" aria-label="Blog of cast42" data-md-component="logo">
+      
+  <img src="../../../../assets/logo.svg" alt="logo">
+
+    </a>
+    Blog of cast42
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tags
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../feed_rss_updated.xml" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RSS feed
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archive
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2022/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2022
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2020/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2020
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Categories
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Categories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/hello/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hello
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/world/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    World
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../.." class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2020-11-05 00:00:00+00:00" class="md-ellipsis">Nov 5, 2020</time>
+                      </div>
+                    </li>
+                    
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              8 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+
+
+<h1 id="estimating-the-effective-reproduction-number-in-belgium-with-the-rki-method">Estimating the effective reproduction number in Belgium with the RKI method<a class="headerlink" href="#estimating-the-effective-reproduction-number-in-belgium-with-the-rki-method" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Using the Robert Koch Institute method with serial interval of 4.</p>
+</blockquote>
+<p>Every day <a href="https://twitter.com/BartMesuere">Bart Mesuere</a> tweets a nice dashboard with current numbers about Covid-19 in Belgium. This was the tweet on Wednesday 20/11/04:</p>
+<blockquote>
+<p>twitter: https://twitter.com/BartMesuere/status/1323881489864548352</p>
+</blockquote>
+<p>It's nice to see that the effective reproduction number ($Re(t)$) is again below one. That means the power of virus is declining and the number of infection will start to lower. This occured first on Tuesday 2020/11/3:</p>
+<blockquote>
+<p>twitter: https://twitter.com/BartMesuere/status/1323519613855059968</p>
+</blockquote>
+<p>I estimated the $Re(t)$ earlier with <a href="https://github.com/rtcovidlive/covid-model">rt.live</a> model in <a href="https://cast42.github.io/blog/cast42/covid19/belgium/2020/11/01/rt-be-region.html">this notebook</a>. There the $Re(t)$ was still estimated to be above one. <a href="https://twitter.com/theCake">Michael Osthege</a> replied with a simulation results with furter improved <a href="https://github.com/rtcovidlive/rtlive-global">model</a>:</p>
+<blockquote>
+<p>twitter: https://twitter.com/theCake/status/1323211910481874944</p>
+</blockquote>
+<p>In that estimation, the $Re(t)$ was also not yet heading below one at the end of october.</p>
+<p>In this notebook, we will implement a calculation based on the method of the Robert Koch Institute. The method is described and programmed in R in this <a href="https://staff.math.su.se/hoehle/blog/2020/04/15/effectiveR0.html">blog post</a>.</p>
+<p>In that blogpost there's a link to a website with estimations for most places in the world <a href="https://epiforecasts.io/covid/posts/national/belgium/">The estimation for Belgium is here</a></p>
+<p><a class="glightbox" href="https://github.com/cast42/blog/blob/master/_notebooks/images/LSHTM.png?raw=1" data-type="image" data-width="auto" data-height="auto" data-title="LSHTM" data-desc-position="bottom"><img alt="LSHTM" src="https://github.com/cast42/blog/blob/master/_notebooks/images/LSHTM.png?raw=1" /></a></p>
+<p>According to that calculation, $Re(t)$ is already below zero for some days.</p>
+<h1 id="load-libraries-and-data">Load libraries and data<a class="headerlink" href="#load-libraries-and-data" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>import numpy as np
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>import pandas as pd
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>df_tests = pd.read_csv(&#39;https://epistat.sciensano.be/Data/COVID19BE_tests.csv&#39;, parse_dates=[&#39;DATE&#39;])
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>df_cases = pd.read_csv(&#39;https://epistat.sciensano.be/Data/COVID19BE_CASES_AGESEX.csv&#39;, parse_dates=[&#39;DATE&#39;])
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>df_cases
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DATE</th>
+      <th>PROVINCE</th>
+      <th>REGION</th>
+      <th>AGEGROUP</th>
+      <th>SEX</th>
+      <th>CASES</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2020-03-01</td>
+      <td>Antwerpen</td>
+      <td>Flanders</td>
+      <td>40-49</td>
+      <td>M</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2020-03-01</td>
+      <td>Brussels</td>
+      <td>Brussels</td>
+      <td>10-19</td>
+      <td>F</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2020-03-01</td>
+      <td>Brussels</td>
+      <td>Brussels</td>
+      <td>10-19</td>
+      <td>M</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2020-03-01</td>
+      <td>Brussels</td>
+      <td>Brussels</td>
+      <td>20-29</td>
+      <td>M</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2020-03-01</td>
+      <td>Brussels</td>
+      <td>Brussels</td>
+      <td>30-39</td>
+      <td>F</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>36279</th>
+      <td>NaT</td>
+      <td>VlaamsBrabant</td>
+      <td>Flanders</td>
+      <td>40-49</td>
+      <td>M</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>36280</th>
+      <td>NaT</td>
+      <td>VlaamsBrabant</td>
+      <td>Flanders</td>
+      <td>50-59</td>
+      <td>M</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>36281</th>
+      <td>NaT</td>
+      <td>WestVlaanderen</td>
+      <td>Flanders</td>
+      <td>20-29</td>
+      <td>F</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>36282</th>
+      <td>NaT</td>
+      <td>WestVlaanderen</td>
+      <td>Flanders</td>
+      <td>50-59</td>
+      <td>M</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>36283</th>
+      <td>NaT</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>36284 rows × 6 columns</p>
+</div>
+
+<p>Reformat data into Rtlive format</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>df_cases_per_day = (df_cases
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>   .dropna(subset=[&#39;DATE&#39;])
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>   .assign(region=&#39;Belgium&#39;)
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>   .groupby([&#39;region&#39;, &#39;DATE&#39;], as_index=False)
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>   .agg(cases=(&#39;CASES&#39;, &#39;sum&#39;))
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>   .rename(columns={&#39;DATE&#39;:&#39;date&#39;})
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>   .set_index([&quot;region&quot;, &quot;date&quot;])
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>)
+</code></pre></div>
+<p>What's in our basetable:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>df_cases_per_day
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>cases</th>
+    </tr>
+    <tr>
+      <th>region</th>
+      <th>date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="11" valign="top">Belgium</th>
+      <th>2020-03-01</th>
+      <td>19</td>
+    </tr>
+    <tr>
+      <th>2020-03-02</th>
+      <td>19</td>
+    </tr>
+    <tr>
+      <th>2020-03-03</th>
+      <td>34</td>
+    </tr>
+    <tr>
+      <th>2020-03-04</th>
+      <td>53</td>
+    </tr>
+    <tr>
+      <th>2020-03-05</th>
+      <td>81</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2020-11-01</th>
+      <td>2660</td>
+    </tr>
+    <tr>
+      <th>2020-11-02</th>
+      <td>13345</td>
+    </tr>
+    <tr>
+      <th>2020-11-03</th>
+      <td>11167</td>
+    </tr>
+    <tr>
+      <th>2020-11-04</th>
+      <td>4019</td>
+    </tr>
+    <tr>
+      <th>2020-11-05</th>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+<p>250 rows × 1 columns</p>
+</div>
+
+<p>Let's plot the number of cases in function of the time.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ax = df_cases_per_day.loc[&#39;Belgium&#39;].plot(figsize=(18,6))
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>ax.set(ylabel=&#39;Number of cases&#39;, title=&#39;Number of cases for covid-19 and number of positives in Belgium&#39;);
+</code></pre></div>
+<p><a class="glightbox" href="../../../../2020-11-05-RKI-rte-calculation/output_14_0.png" data-type="image" data-width="auto" data-height="auto" data-title="png" data-desc-position="bottom"><img alt="png" src="../../../../2020-11-05-RKI-rte-calculation/output_14_0.png" /></a></p>
+<p>We see that the last days are not yet complete. Let's cut off the last two days of reporting.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>import datetime
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>from dateutil.relativedelta import relativedelta
+</code></pre></div>
+<p>Calculate the date two days ago:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>datetime.date(2020, 11, 3)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>datetime.date(2020, 11, 3)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a># today_minus_two = datetime.date.today() + relativedelta(days=-2)
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>today_minus_two = datetime.date(2020, 11, 3) # Fix the day
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>today_minus_two.strftime(&quot;%Y-%m-%d&quot;)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&#39;2020-11-03&#39;
+</code></pre></div>
+<p>Replot the cases:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>ax = df_cases_per_day.loc[&#39;Belgium&#39;][:today_minus_two].plot(figsize=(18,6))
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>ax.set(ylabel=&#39;Number of cases&#39;, title=&#39;Number of cases for covid-19 and number of positives in Belgium&#39;);
+</code></pre></div>
+<p><a class="glightbox" href="../../../../2020-11-05-RKI-rte-calculation/output_21_0.png" data-type="image" data-width="auto" data-height="auto" data-title="png" data-desc-position="bottom"><img alt="png" src="../../../../2020-11-05-RKI-rte-calculation/output_21_0.png" /></a></p>
+<p>Select the Belgium region:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>region = &#39;Belgium&#39;
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>df = df_cases_per_day.loc[region][:today_minus_two]
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>df
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cases</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-03-01</th>
+      <td>19</td>
+    </tr>
+    <tr>
+      <th>2020-03-02</th>
+      <td>19</td>
+    </tr>
+    <tr>
+      <th>2020-03-03</th>
+      <td>34</td>
+    </tr>
+    <tr>
+      <th>2020-03-04</th>
+      <td>53</td>
+    </tr>
+    <tr>
+      <th>2020-03-05</th>
+      <td>81</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2020-10-30</th>
+      <td>15185</td>
+    </tr>
+    <tr>
+      <th>2020-10-31</th>
+      <td>6243</td>
+    </tr>
+    <tr>
+      <th>2020-11-01</th>
+      <td>2660</td>
+    </tr>
+    <tr>
+      <th>2020-11-02</th>
+      <td>13345</td>
+    </tr>
+    <tr>
+      <th>2020-11-03</th>
+      <td>11167</td>
+    </tr>
+  </tbody>
+</table>
+<p>248 rows × 1 columns</p>
+</div>
+
+<p>Check the types of the columns:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>df.info()
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 248 entries, 2020-03-01 to 2020-11-03
+Data columns (total 1 columns):
+ #   Column  Non-Null Count  Dtype
+---  ------  --------------  -----
+ 0   cases   248 non-null    int64
+dtypes: int64(1)
+memory usage: 3.9 KB
+</code></pre></div>
+<h1 id="robert-koch-institute-method">Robert Koch Institute method<a class="headerlink" href="#robert-koch-institute-method" title="Permanent link">&para;</a></h1>
+<p>A basic method to calculate the effective reproduction number is described (among others) in this <a href="https://staff.math.su.se/hoehle/blog/2020/04/15/effectiveR0.html">blogpost</a>. I included the relevant paragraph:</p>
+<p>In a recent report (an der Heiden and Hamouda 2020) the RKI described their method for computing R as part of the COVID-19 outbreak as follows (p. 13): For a constant generation time of 4 days, one obtains R
+ as the ratio of new infections in two consecutive time periods each consisting of 4 days. Mathematically, this estimation could be formulated as part of a statistical model:</p>
+<p>$$y_{s+4} | y_{s} \sim Po(R \cdot y_{s}), s= 1,2,3,4$$</p>
+<p>where $y_{1}, \ldots, y_{4}$ are considered as fixed. From this we obtain </p>
+<p>$$\hat{R}<em s="1">{RKI} = \sum</em>$$}^{4} y_{s+4} / \sum_{s=1}^{4} y_{s</p>
+<p>Somewhat arbitrary, we denote by $Re(t)$ the above estimate for 
+R when $s=1$ corresponds to time $t-8$, i.e. we assign the obtained value to the last of the 8 values used in the computation.</p>
+<p>In Python, we define a lambda function that we apply on a rolling window. Since indexes start from zero, we calculate:</p>
+<p>$$\hat{R}<em s="0">{RKI} = \sum</em>$$}^{3} y_{s+4} / \sum_{s=0}^{3} y_{s</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>rt = lambda y: np.sum(y[4:])/np.sum(y[:4])
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>df.rolling(8).apply(rt)
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cases</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-03-01</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-03-02</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-03-03</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-03-04</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-03-05</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2020-10-30</th>
+      <td>1.273703</td>
+    </tr>
+    <tr>
+      <th>2020-10-31</th>
+      <td>0.929291</td>
+    </tr>
+    <tr>
+      <th>2020-11-01</th>
+      <td>0.601838</td>
+    </tr>
+    <tr>
+      <th>2020-11-02</th>
+      <td>0.499806</td>
+    </tr>
+    <tr>
+      <th>2020-11-03</th>
+      <td>0.475685</td>
+    </tr>
+  </tbody>
+</table>
+<p>248 rows × 1 columns</p>
+</div>
+
+<p>The first values are Nan because the window is in the past. If we plot the result, it looks like this:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>ax = df.rolling(8).apply(rt).plot(figsize=(16,4), label=&#39;Re(t)&#39;)
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>ax.set(ylabel=&#39;Re(t)&#39;, title=&#39;Effective reproduction number estimated with RKI method&#39;)
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>ax.legend([&#39;Re(t)&#39;]);
+</code></pre></div>
+<p><a class="glightbox" href="../../../../2020-11-05-RKI-rte-calculation/output_30_0.png" data-type="image" data-width="auto" data-height="auto" data-title="png" data-desc-position="bottom"><img alt="png" src="../../../../2020-11-05-RKI-rte-calculation/output_30_0.png" /></a></p>
+<p>To avoid the spikes due to weekend reporting issue, I first applied a rolling mean on a window of 7 days:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>ax = df.rolling(7).mean().rolling(8).apply(rt).plot(figsize=(16,4), label=&#39;Re(t)&#39;)
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>ax.set(ylabel=&#39;Re(t)&#39;, title=&#39;Effective reproduction number estimated with RKI method after rolling mean on window of 7 days&#39;)
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>ax.legend([&#39;Re(t)&#39;]);
+</code></pre></div>
+<p><a class="glightbox" href="../../../../2020-11-05-RKI-rte-calculation/output_32_0.png" data-type="image" data-width="auto" data-height="auto" data-title="png" data-desc-position="bottom"><img alt="png" src="../../../../2020-11-05-RKI-rte-calculation/output_32_0.png" /></a></p>
+<h1 id="interactive-visualisation-in-altair">Interactive visualisation in Altair<a class="headerlink" href="#interactive-visualisation-in-altair" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>import altair as alt
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>alt.Chart(df.rolling(7).mean().rolling(8).apply(rt).fillna(0).reset_index()).mark_line().encode(
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>    x=alt.X(&#39;date:T&#39;),
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>    y=alt.Y(&#39;cases&#39;, title=&#39;Re(t)&#39;),
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>    tooltip=[&#39;date:T&#39;, alt.Tooltip(&#39;cases&#39;, format=&#39;.2f&#39;)]
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>).transform_filter(
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>    alt.datum.date &gt; alt.expr.toDate(&#39;2020-03-13&#39;)
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>).properties(
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>    width=600,
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>    title=&#39;Effective reproduction number in Belgium based on Robert-Koch Institute method&#39;
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>)
+</code></pre></div>
+<div id="altair-viz-8aa848a096114e55a92f80251a7d08bb"></div>
+<script type="text/javascript">
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-8aa848a096114e55a92f80251a7d08bb") {
+      outputDiv = document.getElementById("altair-viz-8aa848a096114e55a92f80251a7d08bb");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.8.1?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
+    };
+
+    function loadScript(lib) {
+      return new Promise(function(resolve, reject) {
+        var s = document.createElement('script');
+        s.src = paths[lib];
+        s.async = true;
+        s.onload = () => resolve(paths[lib]);
+        s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+        document.getElementsByTagName("head")[0].appendChild(s);
+      });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else if (typeof vegaEmbed === "function") {
+      displayChart(vegaEmbed);
+    } else {
+      loadScript("vega")
+        .then(() => loadScript("vega-lite"))
+        .then(() => loadScript("vega-embed"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-8f6b755fa8c1d7435c13e24ac4ae54d3"}, "mark": "line", "encoding": {"tooltip": [{"type": "temporal", "field": "date"}, {"type": "quantitative", "field": "cases", "format": ".2f"}], "x": {"type": "temporal", "field": "date"}, "y": {"type": "quantitative", "field": "cases", "title": "Re(t)"}}, "title": "Effective reproduction number in Belgium based on Robert-Koch Institute method", "transform": [{"filter": "(datum.date > toDate('2020-03-13'))"}], "width": 600, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-8f6b755fa8c1d7435c13e24ac4ae54d3": [{"date": "2020-03-01T00:00:00", "cases": 0.0}, {"date": "2020-03-02T00:00:00", "cases": 0.0}, {"date": "2020-03-03T00:00:00", "cases": 0.0}, {"date": "2020-03-04T00:00:00", "cases": 0.0}, {"date": "2020-03-05T00:00:00", "cases": 0.0}, {"date": "2020-03-06T00:00:00", "cases": 0.0}, {"date": "2020-03-07T00:00:00", "cases": 0.0}, {"date": "2020-03-08T00:00:00", "cases": 0.0}, {"date": "2020-03-09T00:00:00", "cases": 0.0}, {"date": "2020-03-10T00:00:00", "cases": 0.0}, {"date": "2020-03-11T00:00:00", "cases": 0.0}, {"date": "2020-03-12T00:00:00", "cases": 0.0}, {"date": "2020-03-13T00:00:00", "cases": 0.0}, {"date": "2020-03-14T00:00:00", "cases": 2.1550522648083623}, {"date": "2020-03-15T00:00:00", "cases": 2.1745562130177514}, {"date": "2020-03-16T00:00:00", "cases": 2.128966639544345}, {"date": "2020-03-17T00:00:00", "cases": 2.0226899046366325}, {"date": "2020-03-18T00:00:00", "cases": 1.9609269738614927}, {"date": "2020-03-19T00:00:00", "cases": 1.9764172335600907}, {"date": "2020-03-20T00:00:00", "cases": 1.9464934072233904}, {"date": "2020-03-21T00:00:00", "cases": 1.8896114452934483}, {"date": "2020-03-22T00:00:00", "cases": 1.7826027209014708}, {"date": "2020-03-23T00:00:00", "cases": 1.6979118861863238}, {"date": "2020-03-24T00:00:00", "cases": 1.6763204398193596}, {"date": "2020-03-25T00:00:00", "cases": 1.6971521982276518}, {"date": "2020-03-26T00:00:00", "cases": 1.7541628122109156}, {"date": "2020-03-27T00:00:00", "cases": 1.73653625244949}, {"date": "2020-03-28T00:00:00", "cases": 1.654172767203514}, {"date": "2020-03-29T00:00:00", "cases": 1.5372097739024642}, {"date": "2020-03-30T00:00:00", "cases": 1.4133597011645793}, {"date": "2020-03-31T00:00:00", "cases": 1.3085723179890267}, {"date": "2020-04-01T00:00:00", "cases": 1.2405381483448399}, {"date": "2020-04-02T00:00:00", "cases": 1.1993206476931701}, {"date": "2020-04-03T00:00:00", "cases": 1.1647958707751622}, {"date": "2020-04-04T00:00:00", "cases": 1.134348330310149}, {"date": "2020-04-05T00:00:00", "cases": 1.098718570735466}, {"date": "2020-04-06T00:00:00", "cases": 1.07047598097176}, {"date": "2020-04-07T00:00:00", "cases": 1.0416166146125305}, {"date": "2020-04-08T00:00:00", "cases": 1.025349306629617}, {"date": "2020-04-09T00:00:00", "cases": 1.0386773338874746}, {"date": "2020-04-10T00:00:00", "cases": 1.0610326226560494}, {"date": "2020-04-11T00:00:00", "cases": 1.0993849308047157}, {"date": "2020-04-12T00:00:00", "cases": 1.131743109883929}, {"date": "2020-04-13T00:00:00", "cases": 1.0873033735964188}, {"date": "2020-04-14T00:00:00", "cases": 1.019028712535709}, {"date": "2020-04-15T00:00:00", "cases": 0.9472236467900601}, {"date": "2020-04-16T00:00:00", "cases": 0.8754150947658524}, {"date": "2020-04-17T00:00:00", "cases": 0.8584801508809051}, {"date": "2020-04-18T00:00:00", "cases": 0.8444835123063765}, {"date": "2020-04-19T00:00:00", "cases": 0.8281488408721759}, {"date": "2020-04-20T00:00:00", "cases": 0.8531172584640793}, {"date": "2020-04-21T00:00:00", "cases": 0.8873677160080377}, {"date": "2020-04-22T00:00:00", "cases": 0.9180498508974287}, {"date": "2020-04-23T00:00:00", "cases": 0.9369112359216666}, {"date": "2020-04-24T00:00:00", "cases": 0.8802480338777979}, {"date": "2020-04-25T00:00:00", "cases": 0.8040216177047793}, {"date": "2020-04-26T00:00:00", "cases": 0.7592620966506297}, {"date": "2020-04-27T00:00:00", "cases": 0.7327137782288758}, {"date": "2020-04-28T00:00:00", "cases": 0.7321741520909936}, {"date": "2020-04-29T00:00:00", "cases": 0.7357116034547503}, {"date": "2020-04-30T00:00:00", "cases": 0.7153812003067361}, {"date": "2020-05-01T00:00:00", "cases": 0.6841695164711484}, {"date": "2020-05-02T00:00:00", "cases": 0.6797765992396865}, {"date": "2020-05-03T00:00:00", "cases": 0.6815536953858718}, {"date": "2020-05-04T00:00:00", "cases": 0.7067418899858956}, {"date": "2020-05-05T00:00:00", "cases": 0.7752609933565329}, {"date": "2020-05-06T00:00:00", "cases": 0.8361640430820214}, {"date": "2020-05-07T00:00:00", "cases": 0.8904366060061408}, {"date": "2020-05-08T00:00:00", "cases": 0.9579308693222638}, {"date": "2020-05-09T00:00:00", "cases": 0.9863706847302701}, {"date": "2020-05-10T00:00:00", "cases": 1.0007431260837254}, {"date": "2020-05-11T00:00:00", "cases": 1.0179983179142136}, {"date": "2020-05-12T00:00:00", "cases": 0.9741666666666667}, {"date": "2020-05-13T00:00:00", "cases": 0.9176733410557668}, {"date": "2020-05-14T00:00:00", "cases": 0.8561881188118813}, {"date": "2020-05-15T00:00:00", "cases": 0.8030403172504956}, {"date": "2020-05-16T00:00:00", "cases": 0.7803250641573994}, {"date": "2020-05-17T00:00:00", "cases": 0.786042737354612}, {"date": "2020-05-18T00:00:00", "cases": 0.7990748771321191}, {"date": "2020-05-19T00:00:00", "cases": 0.8127572016460906}, {"date": "2020-05-20T00:00:00", "cases": 0.8402762552071914}, {"date": "2020-05-21T00:00:00", "cases": 0.8295480614819913}, {"date": "2020-05-22T00:00:00", "cases": 0.8273034249879401}, {"date": "2020-05-23T00:00:00", "cases": 0.8312658227848102}, {"date": "2020-05-24T00:00:00", "cases": 0.8093933463796477}, {"date": "2020-05-25T00:00:00", "cases": 0.8397400442477874}, {"date": "2020-05-26T00:00:00", "cases": 0.8673469387755103}, {"date": "2020-05-27T00:00:00", "cases": 0.8600578650829908}, {"date": "2020-05-28T00:00:00", "cases": 0.878949065119278}, {"date": "2020-05-29T00:00:00", "cases": 0.852626379054833}, {"date": "2020-05-30T00:00:00", "cases": 0.8287394957983191}, {"date": "2020-05-31T00:00:00", "cases": 0.8606586402266289}, {"date": "2020-06-01T00:00:00", "cases": 0.8133137722354667}, {"date": "2020-06-02T00:00:00", "cases": 0.7862108922363847}, {"date": "2020-06-03T00:00:00", "cases": 0.7596836341512878}, {"date": "2020-06-04T00:00:00", "cases": 0.7093190701501748}, {"date": "2020-06-05T00:00:00", "cases": 0.7652762119503945}, {"date": "2020-06-06T00:00:00", "cases": 0.8275607958732498}, {"date": "2020-06-07T00:00:00", "cases": 0.8998932194340631}, {"date": "2020-06-08T00:00:00", "cases": 1.0049303944315546}, {"date": "2020-06-09T00:00:00", "cases": 1.0412492634060107}, {"date": "2020-06-10T00:00:00", "cases": 1.0552092609082815}, {"date": "2020-06-11T00:00:00", "cases": 1.0367843369919905}, {"date": "2020-06-12T00:00:00", "cases": 0.9457431457431457}, {"date": "2020-06-13T00:00:00", "cases": 0.8701188455008488}, {"date": "2020-06-14T00:00:00", "cases": 0.8106891701828409}, {"date": "2020-06-15T00:00:00", "cases": 0.7899856938483547}, {"date": "2020-06-16T00:00:00", "cases": 0.8114128776319806}, {"date": "2020-06-17T00:00:00", "cases": 0.8393495934959349}, {"date": "2020-06-18T00:00:00", "cases": 0.8837612768910481}, {"date": "2020-06-19T00:00:00", "cases": 0.9235784136182542}, {"date": "2020-06-20T00:00:00", "cases": 0.9778112072207596}, {"date": "2020-06-21T00:00:00", "cases": 1.0244091437427356}, {"date": "2020-06-22T00:00:00", "cases": 1.0486847271299566}, {"date": "2020-06-23T00:00:00", "cases": 1.0498039215686275}, {"date": "2020-06-24T00:00:00", "cases": 1.0226923076923078}, {"date": "2020-06-25T00:00:00", "cases": 0.987518910741301}, {"date": "2020-06-26T00:00:00", "cases": 0.9580681392736803}, {"date": "2020-06-27T00:00:00", "cases": 0.9290250280164364}, {"date": "2020-06-28T00:00:00", "cases": 0.9183903723204211}, {"date": "2020-06-29T00:00:00", "cases": 0.9241669858291842}, {"date": "2020-06-30T00:00:00", "cases": 0.9308323563892146}, {"date": "2020-07-01T00:00:00", "cases": 0.963007639726578}, {"date": "2020-07-02T00:00:00", "cases": 0.9914004914004916}, {"date": "2020-07-03T00:00:00", "cases": 1.0128470783257357}, {"date": "2020-07-04T00:00:00", "cases": 1.0495382031905962}, {"date": "2020-07-05T00:00:00", "cases": 1.0526096033402923}, {"date": "2020-07-06T00:00:00", "cases": 1.0367616687319288}, {"date": "2020-07-07T00:00:00", "cases": 1.0298690671031097}, {"date": "2020-07-08T00:00:00", "cases": 1.0011999999999999}, {"date": "2020-07-09T00:00:00", "cases": 0.9996033320111068}, {"date": "2020-07-10T00:00:00", "cases": 1.0298804780876496}, {"date": "2020-07-11T00:00:00", "cases": 1.0524433849821215}, {"date": "2020-07-12T00:00:00", "cases": 1.0906911705952858}, {"date": "2020-07-13T00:00:00", "cases": 1.1476190476190475}, {"date": "2020-07-14T00:00:00", "cases": 1.2104448742746614}, {"date": "2020-07-15T00:00:00", "cases": 1.3178557946394864}, {"date": "2020-07-16T00:00:00", "cases": 1.4417582417582415}, {"date": "2020-07-17T00:00:00", "cases": 1.5269709543568464}, {"date": "2020-07-18T00:00:00", "cases": 1.5519335250878876}, {"date": "2020-07-19T00:00:00", "cases": 1.4878258378688056}, {"date": "2020-07-20T00:00:00", "cases": 1.4352134146341464}, {"date": "2020-07-21T00:00:00", "cases": 1.3349184782608696}, {"date": "2020-07-22T00:00:00", "cases": 1.3109555189456341}, {"date": "2020-07-23T00:00:00", "cases": 1.3532922603003468}, {"date": "2020-07-24T00:00:00", "cases": 1.36218799787573}, {"date": "2020-07-25T00:00:00", "cases": 1.4456318914334183}, {"date": "2020-07-26T00:00:00", "cases": 1.441407477222746}, {"date": "2020-07-27T00:00:00", "cases": 1.389813629250249}, {"date": "2020-07-28T00:00:00", "cases": 1.3879142300194933}, {"date": "2020-07-29T00:00:00", "cases": 1.366111241492607}, {"date": "2020-07-30T00:00:00", "cases": 1.3818657367044465}, {"date": "2020-07-31T00:00:00", "cases": 1.4079230218036645}, {"date": "2020-08-01T00:00:00", "cases": 1.345318352059925}, {"date": "2020-08-02T00:00:00", "cases": 1.2709156502319188}, {"date": "2020-08-03T00:00:00", "cases": 1.2008675078864353}, {"date": "2020-08-04T00:00:00", "cases": 1.1341427948233243}, {"date": "2020-08-05T00:00:00", "cases": 1.1104537861915371}, {"date": "2020-08-06T00:00:00", "cases": 1.1138821303054882}, {"date": "2020-08-07T00:00:00", "cases": 1.1095422604583962}, {"date": "2020-08-08T00:00:00", "cases": 1.1010321174434257}, {"date": "2020-08-09T00:00:00", "cases": 1.0883735506110936}, {"date": "2020-08-10T00:00:00", "cases": 1.061828772525939}, {"date": "2020-08-11T00:00:00", "cases": 1.032968333826576}, {"date": "2020-08-12T00:00:00", "cases": 1.004425036390102}, {"date": "2020-08-13T00:00:00", "cases": 0.9775986179095881}, {"date": "2020-08-14T00:00:00", "cases": 0.9393142857142857}, {"date": "2020-08-15T00:00:00", "cases": 0.9084918633967453}, {"date": "2020-08-16T00:00:00", "cases": 0.8950205785171875}, {"date": "2020-08-17T00:00:00", "cases": 0.8811852026390199}, {"date": "2020-08-18T00:00:00", "cases": 0.8923835016425355}, {"date": "2020-08-19T00:00:00", "cases": 0.9159886471144749}, {"date": "2020-08-20T00:00:00", "cases": 0.924805699481865}, {"date": "2020-08-21T00:00:00", "cases": 0.9441807607460392}, {"date": "2020-08-22T00:00:00", "cases": 0.9545299611425455}, {"date": "2020-08-23T00:00:00", "cases": 0.9543482751497624}, {"date": "2020-08-24T00:00:00", "cases": 0.9598711394355348}, {"date": "2020-08-25T00:00:00", "cases": 0.9509345794392523}, {"date": "2020-08-26T00:00:00", "cases": 0.9305813455220684}, {"date": "2020-08-27T00:00:00", "cases": 0.9090909090909092}, {"date": "2020-08-28T00:00:00", "cases": 0.9028162848387568}, {"date": "2020-08-29T00:00:00", "cases": 0.9186211004392821}, {"date": "2020-08-30T00:00:00", "cases": 0.95088257866462}, {"date": "2020-08-31T00:00:00", "cases": 0.9932539682539682}, {"date": "2020-09-01T00:00:00", "cases": 1.016162922256344}, {"date": "2020-09-02T00:00:00", "cases": 1.0284486950883451}, {"date": "2020-09-03T00:00:00", "cases": 1.0447134786117838}, {"date": "2020-09-04T00:00:00", "cases": 1.0616060727127448}, {"date": "2020-09-05T00:00:00", "cases": 1.0909018609829808}, {"date": "2020-09-06T00:00:00", "cases": 1.1141933958546772}, {"date": "2020-09-07T00:00:00", "cases": 1.1357385661310258}, {"date": "2020-09-08T00:00:00", "cases": 1.1633298208640674}, {"date": "2020-09-09T00:00:00", "cases": 1.205365604724065}, {"date": "2020-09-10T00:00:00", "cases": 1.2759937756401187}, {"date": "2020-09-11T00:00:00", "cases": 1.3480715597578399}, {"date": "2020-09-12T00:00:00", "cases": 1.3965450310559007}, {"date": "2020-09-13T00:00:00", "cases": 1.3939760493528488}, {"date": "2020-09-14T00:00:00", "cases": 1.3775498891352551}, {"date": "2020-09-15T00:00:00", "cases": 1.3550812392774245}, {"date": "2020-09-16T00:00:00", "cases": 1.3658559184618948}, {"date": "2020-09-17T00:00:00", "cases": 1.4131377993752168}, {"date": "2020-09-18T00:00:00", "cases": 1.4195404611484448}, {"date": "2020-09-19T00:00:00", "cases": 1.3965369577359894}, {"date": "2020-09-20T00:00:00", "cases": 1.3219252425208603}, {"date": "2020-09-21T00:00:00", "cases": 1.2377341111452256}, {"date": "2020-09-22T00:00:00", "cases": 1.1813362814298267}, {"date": "2020-09-23T00:00:00", "cases": 1.14419795221843}, {"date": "2020-09-24T00:00:00", "cases": 1.1298847920355117}, {"date": "2020-09-25T00:00:00", "cases": 1.106169225808052}, {"date": "2020-09-26T00:00:00", "cases": 1.0739309881460863}, {"date": "2020-09-27T00:00:00", "cases": 1.044975764354959}, {"date": "2020-09-28T00:00:00", "cases": 1.0324514590666516}, {"date": "2020-09-29T00:00:00", "cases": 1.0558383602807615}, {"date": "2020-09-30T00:00:00", "cases": 1.1126801474695565}, {"date": "2020-10-01T00:00:00", "cases": 1.2052986039873332}, {"date": "2020-10-02T00:00:00", "cases": 1.3156783389055076}, {"date": "2020-10-03T00:00:00", "cases": 1.3898647070067756}, {"date": "2020-10-04T00:00:00", "cases": 1.4139322864372064}, {"date": "2020-10-05T00:00:00", "cases": 1.4105054766133809}, {"date": "2020-10-06T00:00:00", "cases": 1.381971378895279}, {"date": "2020-10-07T00:00:00", "cases": 1.4041932181115235}, {"date": "2020-10-08T00:00:00", "cases": 1.4741446648961098}, {"date": "2020-10-09T00:00:00", "cases": 1.538689578277694}, {"date": "2020-10-10T00:00:00", "cases": 1.5811598761250363}, {"date": "2020-10-11T00:00:00", "cases": 1.5444177213812316}, {"date": "2020-10-12T00:00:00", "cases": 1.4878415353192802}, {"date": "2020-10-13T00:00:00", "cases": 1.4472899012804556}, {"date": "2020-10-14T00:00:00", "cases": 1.438269385256876}, {"date": "2020-10-15T00:00:00", "cases": 1.4802099848500863}, {"date": "2020-10-16T00:00:00", "cases": 1.5109692291753003}, {"date": "2020-10-17T00:00:00", "cases": 1.4927136714378275}, {"date": "2020-10-18T00:00:00", "cases": 1.4357169834405206}, {"date": "2020-10-19T00:00:00", "cases": 1.3661645974560135}, {"date": "2020-10-20T00:00:00", "cases": 1.307347155677075}, {"date": "2020-10-21T00:00:00", "cases": 1.2810455453045957}, {"date": "2020-10-22T00:00:00", "cases": 1.2901270475251854}, {"date": "2020-10-23T00:00:00", "cases": 1.293952233938017}, {"date": "2020-10-24T00:00:00", "cases": 1.2828895394005748}, {"date": "2020-10-25T00:00:00", "cases": 1.2530464514539181}, {"date": "2020-10-26T00:00:00", "cases": 1.207993015588563}, {"date": "2020-10-27T00:00:00", "cases": 1.1633108113566777}, {"date": "2020-10-28T00:00:00", "cases": 1.1249575196048622}, {"date": "2020-10-29T00:00:00", "cases": 1.0944052076137751}, {"date": "2020-10-30T00:00:00", "cases": 1.0511948800365167}, {"date": "2020-10-31T00:00:00", "cases": 0.9974999131914303}, {"date": "2020-11-01T00:00:00", "cases": 0.9470244855312769}, {"date": "2020-11-02T00:00:00", "cases": 0.8967344426674334}, {"date": "2020-11-03T00:00:00", "cases": 0.8462577064514816}]}}, {"mode": "vega-lite"});
+</script>
+
+<h1 id="making-the-final-visualisation-in-altair">Making the final visualisation in Altair<a class="headerlink" href="#making-the-final-visualisation-in-altair" title="Permanent link">&para;</a></h1>
+<p>In the interactive Altair figure below, we show the $Re(t)$ for the last 14 days. We reduce the rolling mean window to three to see faster reactions.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>#collapse
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>df_plot = df.rolling(7).mean().rolling(8).apply(rt).fillna(0).reset_index()
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>last_value = str(df_plot.iloc[-1][&#39;cases&#39;].round(2)) + &#39; ↓&#39;
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>first_value = str(df_plot[df_plot[&#39;date&#39;] == &#39;2020-10-21&#39;].iloc[0][&#39;cases&#39;].round(2)) # + &#39; ↑&#39;
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>today_minus_15 = datetime.datetime.today() + relativedelta(days=-15)
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>today_minus_15_str = today_minus_15.strftime(&quot;%Y-%m-%d&quot;)
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>line = alt.Chart(df_plot).mark_line(point=True).encode(
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>    x=alt.X(&#39;date:T&#39;, axis=alt.Axis(title=&#39;Datum&#39;, grid=False)),
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>    y=alt.Y(&#39;cases&#39;, axis=alt.Axis(title=&#39;Re(t)&#39;, grid=False, labels=False, titlePadding=40)),
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>    tooltip=[&#39;date:T&#39;, alt.Tooltip(&#39;cases&#39;, title=&#39;Re(t)&#39;, format=&#39;.2f&#39;)]
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>).transform_filter(
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>    alt.datum.date &gt; alt.expr.toDate(today_minus_15_str)
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>).properties(
+<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>    width=600,
+<a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>    height=100
+<a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>)
+<a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>
+<a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a>hline = alt.Chart(pd.DataFrame({&#39;cases&#39;: [1]})).mark_rule().encode(y=&#39;cases&#39;)
+<a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a>
+<a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a>
+<a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a>label_right = alt.Chart(df_plot).mark_text(
+<a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a>    align=&#39;left&#39;, dx=5, dy=-10 , size=15
+<a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a>).encode(
+<a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a>    x=alt.X(&#39;max(date):T&#39;, title=None),
+<a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a>    text=alt.value(last_value),
+<a id="__codelineno-17-28" name="__codelineno-17-28" href="#__codelineno-17-28"></a>)
+<a id="__codelineno-17-29" name="__codelineno-17-29" href="#__codelineno-17-29"></a>
+<a id="__codelineno-17-30" name="__codelineno-17-30" href="#__codelineno-17-30"></a>label_left = alt.Chart(df_plot).mark_text(
+<a id="__codelineno-17-31" name="__codelineno-17-31" href="#__codelineno-17-31"></a>    align=&#39;right&#39;, dx=-5, dy=-40, size=15
+<a id="__codelineno-17-32" name="__codelineno-17-32" href="#__codelineno-17-32"></a>).encode(
+<a id="__codelineno-17-33" name="__codelineno-17-33" href="#__codelineno-17-33"></a>    x=alt.X(&#39;min(date):T&#39;, title=None),
+<a id="__codelineno-17-34" name="__codelineno-17-34" href="#__codelineno-17-34"></a>    text=alt.value(first_value),
+<a id="__codelineno-17-35" name="__codelineno-17-35" href="#__codelineno-17-35"></a>).transform_filter(
+<a id="__codelineno-17-36" name="__codelineno-17-36" href="#__codelineno-17-36"></a>    alt.datum.date &gt; alt.expr.toDate(today_minus_15_str)
+<a id="__codelineno-17-37" name="__codelineno-17-37" href="#__codelineno-17-37"></a>)
+<a id="__codelineno-17-38" name="__codelineno-17-38" href="#__codelineno-17-38"></a>
+<a id="__codelineno-17-39" name="__codelineno-17-39" href="#__codelineno-17-39"></a>source = alt.Chart(
+<a id="__codelineno-17-40" name="__codelineno-17-40" href="#__codelineno-17-40"></a>    {&quot;values&quot;: [{&quot;text&quot;: &quot;Data source: Sciensano&quot;}]}
+<a id="__codelineno-17-41" name="__codelineno-17-41" href="#__codelineno-17-41"></a>).mark_text(size=12, align=&#39;left&#39;, dx=-57).encode(
+<a id="__codelineno-17-42" name="__codelineno-17-42" href="#__codelineno-17-42"></a>    text=&quot;text:N&quot;
+<a id="__codelineno-17-43" name="__codelineno-17-43" href="#__codelineno-17-43"></a>)
+<a id="__codelineno-17-44" name="__codelineno-17-44" href="#__codelineno-17-44"></a>
+<a id="__codelineno-17-45" name="__codelineno-17-45" href="#__codelineno-17-45"></a>alt.vconcat(line + label_left + label_right + hline, source).configure(
+<a id="__codelineno-17-46" name="__codelineno-17-46" href="#__codelineno-17-46"></a>    background=&#39;#D9E9F0&#39;
+<a id="__codelineno-17-47" name="__codelineno-17-47" href="#__codelineno-17-47"></a>).configure_view(
+<a id="__codelineno-17-48" name="__codelineno-17-48" href="#__codelineno-17-48"></a>    stroke=None, # Remove box around graph
+<a id="__codelineno-17-49" name="__codelineno-17-49" href="#__codelineno-17-49"></a>).configure_axisY(
+<a id="__codelineno-17-50" name="__codelineno-17-50" href="#__codelineno-17-50"></a>    ticks=False,
+<a id="__codelineno-17-51" name="__codelineno-17-51" href="#__codelineno-17-51"></a>    grid=False,
+<a id="__codelineno-17-52" name="__codelineno-17-52" href="#__codelineno-17-52"></a>    domain=False
+<a id="__codelineno-17-53" name="__codelineno-17-53" href="#__codelineno-17-53"></a>).configure_axisX(
+<a id="__codelineno-17-54" name="__codelineno-17-54" href="#__codelineno-17-54"></a>    grid=False,
+<a id="__codelineno-17-55" name="__codelineno-17-55" href="#__codelineno-17-55"></a>    domain=False
+<a id="__codelineno-17-56" name="__codelineno-17-56" href="#__codelineno-17-56"></a>).properties(title={
+<a id="__codelineno-17-57" name="__codelineno-17-57" href="#__codelineno-17-57"></a>      &quot;text&quot;: [&#39;Effective reproduction number for the last 14 days in Belgium&#39;], 
+<a id="__codelineno-17-58" name="__codelineno-17-58" href="#__codelineno-17-58"></a>      &quot;subtitle&quot;: [f&#39;Estimation based on the number of cases until {today_minus_two.strftime(&quot;%Y-%m-%d&quot;)} after example of Robert Koch Institute with serial interval of 4&#39;],
+<a id="__codelineno-17-59" name="__codelineno-17-59" href="#__codelineno-17-59"></a>}
+<a id="__codelineno-17-60" name="__codelineno-17-60" href="#__codelineno-17-60"></a>)
+<a id="__codelineno-17-61" name="__codelineno-17-61" href="#__codelineno-17-61"></a># .configure_axisY(
+<a id="__codelineno-17-62" name="__codelineno-17-62" href="#__codelineno-17-62"></a>#     labelPadding=50,
+<a id="__codelineno-17-63" name="__codelineno-17-63" href="#__codelineno-17-63"></a># )
+</code></pre></div>
+<div id="altair-viz-9b08ee2d89ac40298fee34d9b2152e09"></div>
+<script type="text/javascript">
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-9b08ee2d89ac40298fee34d9b2152e09") {
+      outputDiv = document.getElementById("altair-viz-9b08ee2d89ac40298fee34d9b2152e09");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.8.1?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
+    };
+
+    function loadScript(lib) {
+      return new Promise(function(resolve, reject) {
+        var s = document.createElement('script');
+        s.src = paths[lib];
+        s.async = true;
+        s.onload = () => resolve(paths[lib]);
+        s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+        document.getElementsByTagName("head")[0].appendChild(s);
+      });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else if (typeof vegaEmbed === "function") {
+      displayChart(vegaEmbed);
+    } else {
+      loadScript("vega")
+        .then(() => loadScript("vega-lite"))
+        .then(() => loadScript("vega-embed"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300, "stroke": null}, "axisX": {"domain": false, "grid": false}, "axisY": {"domain": false, "grid": false, "ticks": false}, "background": "#D9E9F0"}, "vconcat": [{"layer": [{"mark": {"type": "line", "point": true}, "encoding": {"tooltip": [{"type": "temporal", "field": "date"}, {"type": "quantitative", "field": "cases", "format": ".2f", "title": "Re(t)"}], "x": {"type": "temporal", "axis": {"grid": false, "title": "Datum"}, "field": "date"}, "y": {"type": "quantitative", "axis": {"grid": false, "labels": false, "title": "Re(t)", "titlePadding": 40}, "field": "cases"}}, "height": 100, "transform": [{"filter": "(datum.date > toDate('2020-10-22'))"}], "width": 600}, {"mark": {"type": "text", "align": "right", "dx": -5, "dy": -40, "size": 15}, "encoding": {"text": {"value": "1.28"}, "x": {"type": "temporal", "aggregate": "min", "field": "date", "title": null}}, "transform": [{"filter": "(datum.date > toDate('2020-10-22'))"}]}, {"mark": {"type": "text", "align": "left", "dx": 5, "dy": -10, "size": 15}, "encoding": {"text": {"value": "0.85 \u2193"}, "x": {"type": "temporal", "aggregate": "max", "field": "date", "title": null}}}, {"data": {"name": "data-61a2b6093f39a0fc23d95de013b945d4"}, "mark": "rule", "encoding": {"y": {"type": "quantitative", "field": "cases"}}}], "data": {"name": "data-8f6b755fa8c1d7435c13e24ac4ae54d3"}}, {"data": {"name": "data-6e735da48d6abc69852f479aae4fc11a"}, "mark": {"type": "text", "align": "left", "dx": -57, "size": 12}, "encoding": {"text": {"type": "nominal", "field": "text"}}}], "title": {"text": ["Effective reproduction number for the last 14 days in Belgium"], "subtitle": ["Estimation based on the number of cases until 2020-11-03 after example of Robert Koch Institute with serial interval of 4"]}, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-8f6b755fa8c1d7435c13e24ac4ae54d3": [{"date": "2020-03-01T00:00:00", "cases": 0.0}, {"date": "2020-03-02T00:00:00", "cases": 0.0}, {"date": "2020-03-03T00:00:00", "cases": 0.0}, {"date": "2020-03-04T00:00:00", "cases": 0.0}, {"date": "2020-03-05T00:00:00", "cases": 0.0}, {"date": "2020-03-06T00:00:00", "cases": 0.0}, {"date": "2020-03-07T00:00:00", "cases": 0.0}, {"date": "2020-03-08T00:00:00", "cases": 0.0}, {"date": "2020-03-09T00:00:00", "cases": 0.0}, {"date": "2020-03-10T00:00:00", "cases": 0.0}, {"date": "2020-03-11T00:00:00", "cases": 0.0}, {"date": "2020-03-12T00:00:00", "cases": 0.0}, {"date": "2020-03-13T00:00:00", "cases": 0.0}, {"date": "2020-03-14T00:00:00", "cases": 2.1550522648083623}, {"date": "2020-03-15T00:00:00", "cases": 2.1745562130177514}, {"date": "2020-03-16T00:00:00", "cases": 2.128966639544345}, {"date": "2020-03-17T00:00:00", "cases": 2.0226899046366325}, {"date": "2020-03-18T00:00:00", "cases": 1.9609269738614927}, {"date": "2020-03-19T00:00:00", "cases": 1.9764172335600907}, {"date": "2020-03-20T00:00:00", "cases": 1.9464934072233904}, {"date": "2020-03-21T00:00:00", "cases": 1.8896114452934483}, {"date": "2020-03-22T00:00:00", "cases": 1.7826027209014708}, {"date": "2020-03-23T00:00:00", "cases": 1.6979118861863238}, {"date": "2020-03-24T00:00:00", "cases": 1.6763204398193596}, {"date": "2020-03-25T00:00:00", "cases": 1.6971521982276518}, {"date": "2020-03-26T00:00:00", "cases": 1.7541628122109156}, {"date": "2020-03-27T00:00:00", "cases": 1.73653625244949}, {"date": "2020-03-28T00:00:00", "cases": 1.654172767203514}, {"date": "2020-03-29T00:00:00", "cases": 1.5372097739024642}, {"date": "2020-03-30T00:00:00", "cases": 1.4133597011645793}, {"date": "2020-03-31T00:00:00", "cases": 1.3085723179890267}, {"date": "2020-04-01T00:00:00", "cases": 1.2405381483448399}, {"date": "2020-04-02T00:00:00", "cases": 1.1993206476931701}, {"date": "2020-04-03T00:00:00", "cases": 1.1647958707751622}, {"date": "2020-04-04T00:00:00", "cases": 1.134348330310149}, {"date": "2020-04-05T00:00:00", "cases": 1.098718570735466}, {"date": "2020-04-06T00:00:00", "cases": 1.07047598097176}, {"date": "2020-04-07T00:00:00", "cases": 1.0416166146125305}, {"date": "2020-04-08T00:00:00", "cases": 1.025349306629617}, {"date": "2020-04-09T00:00:00", "cases": 1.0386773338874746}, {"date": "2020-04-10T00:00:00", "cases": 1.0610326226560494}, {"date": "2020-04-11T00:00:00", "cases": 1.0993849308047157}, {"date": "2020-04-12T00:00:00", "cases": 1.131743109883929}, {"date": "2020-04-13T00:00:00", "cases": 1.0873033735964188}, {"date": "2020-04-14T00:00:00", "cases": 1.019028712535709}, {"date": "2020-04-15T00:00:00", "cases": 0.9472236467900601}, {"date": "2020-04-16T00:00:00", "cases": 0.8754150947658524}, {"date": "2020-04-17T00:00:00", "cases": 0.8584801508809051}, {"date": "2020-04-18T00:00:00", "cases": 0.8444835123063765}, {"date": "2020-04-19T00:00:00", "cases": 0.8281488408721759}, {"date": "2020-04-20T00:00:00", "cases": 0.8531172584640793}, {"date": "2020-04-21T00:00:00", "cases": 0.8873677160080377}, {"date": "2020-04-22T00:00:00", "cases": 0.9180498508974287}, {"date": "2020-04-23T00:00:00", "cases": 0.9369112359216666}, {"date": "2020-04-24T00:00:00", "cases": 0.8802480338777979}, {"date": "2020-04-25T00:00:00", "cases": 0.8040216177047793}, {"date": "2020-04-26T00:00:00", "cases": 0.7592620966506297}, {"date": "2020-04-27T00:00:00", "cases": 0.7327137782288758}, {"date": "2020-04-28T00:00:00", "cases": 0.7321741520909936}, {"date": "2020-04-29T00:00:00", "cases": 0.7357116034547503}, {"date": "2020-04-30T00:00:00", "cases": 0.7153812003067361}, {"date": "2020-05-01T00:00:00", "cases": 0.6841695164711484}, {"date": "2020-05-02T00:00:00", "cases": 0.6797765992396865}, {"date": "2020-05-03T00:00:00", "cases": 0.6815536953858718}, {"date": "2020-05-04T00:00:00", "cases": 0.7067418899858956}, {"date": "2020-05-05T00:00:00", "cases": 0.7752609933565329}, {"date": "2020-05-06T00:00:00", "cases": 0.8361640430820214}, {"date": "2020-05-07T00:00:00", "cases": 0.8904366060061408}, {"date": "2020-05-08T00:00:00", "cases": 0.9579308693222638}, {"date": "2020-05-09T00:00:00", "cases": 0.9863706847302701}, {"date": "2020-05-10T00:00:00", "cases": 1.0007431260837254}, {"date": "2020-05-11T00:00:00", "cases": 1.0179983179142136}, {"date": "2020-05-12T00:00:00", "cases": 0.9741666666666667}, {"date": "2020-05-13T00:00:00", "cases": 0.9176733410557668}, {"date": "2020-05-14T00:00:00", "cases": 0.8561881188118813}, {"date": "2020-05-15T00:00:00", "cases": 0.8030403172504956}, {"date": "2020-05-16T00:00:00", "cases": 0.7803250641573994}, {"date": "2020-05-17T00:00:00", "cases": 0.786042737354612}, {"date": "2020-05-18T00:00:00", "cases": 0.7990748771321191}, {"date": "2020-05-19T00:00:00", "cases": 0.8127572016460906}, {"date": "2020-05-20T00:00:00", "cases": 0.8402762552071914}, {"date": "2020-05-21T00:00:00", "cases": 0.8295480614819913}, {"date": "2020-05-22T00:00:00", "cases": 0.8273034249879401}, {"date": "2020-05-23T00:00:00", "cases": 0.8312658227848102}, {"date": "2020-05-24T00:00:00", "cases": 0.8093933463796477}, {"date": "2020-05-25T00:00:00", "cases": 0.8397400442477874}, {"date": "2020-05-26T00:00:00", "cases": 0.8673469387755103}, {"date": "2020-05-27T00:00:00", "cases": 0.8600578650829908}, {"date": "2020-05-28T00:00:00", "cases": 0.878949065119278}, {"date": "2020-05-29T00:00:00", "cases": 0.852626379054833}, {"date": "2020-05-30T00:00:00", "cases": 0.8287394957983191}, {"date": "2020-05-31T00:00:00", "cases": 0.8606586402266289}, {"date": "2020-06-01T00:00:00", "cases": 0.8133137722354667}, {"date": "2020-06-02T00:00:00", "cases": 0.7862108922363847}, {"date": "2020-06-03T00:00:00", "cases": 0.7596836341512878}, {"date": "2020-06-04T00:00:00", "cases": 0.7093190701501748}, {"date": "2020-06-05T00:00:00", "cases": 0.7652762119503945}, {"date": "2020-06-06T00:00:00", "cases": 0.8275607958732498}, {"date": "2020-06-07T00:00:00", "cases": 0.8998932194340631}, {"date": "2020-06-08T00:00:00", "cases": 1.0049303944315546}, {"date": "2020-06-09T00:00:00", "cases": 1.0412492634060107}, {"date": "2020-06-10T00:00:00", "cases": 1.0552092609082815}, {"date": "2020-06-11T00:00:00", "cases": 1.0367843369919905}, {"date": "2020-06-12T00:00:00", "cases": 0.9457431457431457}, {"date": "2020-06-13T00:00:00", "cases": 0.8701188455008488}, {"date": "2020-06-14T00:00:00", "cases": 0.8106891701828409}, {"date": "2020-06-15T00:00:00", "cases": 0.7899856938483547}, {"date": "2020-06-16T00:00:00", "cases": 0.8114128776319806}, {"date": "2020-06-17T00:00:00", "cases": 0.8393495934959349}, {"date": "2020-06-18T00:00:00", "cases": 0.8837612768910481}, {"date": "2020-06-19T00:00:00", "cases": 0.9235784136182542}, {"date": "2020-06-20T00:00:00", "cases": 0.9778112072207596}, {"date": "2020-06-21T00:00:00", "cases": 1.0244091437427356}, {"date": "2020-06-22T00:00:00", "cases": 1.0486847271299566}, {"date": "2020-06-23T00:00:00", "cases": 1.0498039215686275}, {"date": "2020-06-24T00:00:00", "cases": 1.0226923076923078}, {"date": "2020-06-25T00:00:00", "cases": 0.987518910741301}, {"date": "2020-06-26T00:00:00", "cases": 0.9580681392736803}, {"date": "2020-06-27T00:00:00", "cases": 0.9290250280164364}, {"date": "2020-06-28T00:00:00", "cases": 0.9183903723204211}, {"date": "2020-06-29T00:00:00", "cases": 0.9241669858291842}, {"date": "2020-06-30T00:00:00", "cases": 0.9308323563892146}, {"date": "2020-07-01T00:00:00", "cases": 0.963007639726578}, {"date": "2020-07-02T00:00:00", "cases": 0.9914004914004916}, {"date": "2020-07-03T00:00:00", "cases": 1.0128470783257357}, {"date": "2020-07-04T00:00:00", "cases": 1.0495382031905962}, {"date": "2020-07-05T00:00:00", "cases": 1.0526096033402923}, {"date": "2020-07-06T00:00:00", "cases": 1.0367616687319288}, {"date": "2020-07-07T00:00:00", "cases": 1.0298690671031097}, {"date": "2020-07-08T00:00:00", "cases": 1.0011999999999999}, {"date": "2020-07-09T00:00:00", "cases": 0.9996033320111068}, {"date": "2020-07-10T00:00:00", "cases": 1.0298804780876496}, {"date": "2020-07-11T00:00:00", "cases": 1.0524433849821215}, {"date": "2020-07-12T00:00:00", "cases": 1.0906911705952858}, {"date": "2020-07-13T00:00:00", "cases": 1.1476190476190475}, {"date": "2020-07-14T00:00:00", "cases": 1.2104448742746614}, {"date": "2020-07-15T00:00:00", "cases": 1.3178557946394864}, {"date": "2020-07-16T00:00:00", "cases": 1.4417582417582415}, {"date": "2020-07-17T00:00:00", "cases": 1.5269709543568464}, {"date": "2020-07-18T00:00:00", "cases": 1.5519335250878876}, {"date": "2020-07-19T00:00:00", "cases": 1.4878258378688056}, {"date": "2020-07-20T00:00:00", "cases": 1.4352134146341464}, {"date": "2020-07-21T00:00:00", "cases": 1.3349184782608696}, {"date": "2020-07-22T00:00:00", "cases": 1.3109555189456341}, {"date": "2020-07-23T00:00:00", "cases": 1.3532922603003468}, {"date": "2020-07-24T00:00:00", "cases": 1.36218799787573}, {"date": "2020-07-25T00:00:00", "cases": 1.4456318914334183}, {"date": "2020-07-26T00:00:00", "cases": 1.441407477222746}, {"date": "2020-07-27T00:00:00", "cases": 1.389813629250249}, {"date": "2020-07-28T00:00:00", "cases": 1.3879142300194933}, {"date": "2020-07-29T00:00:00", "cases": 1.366111241492607}, {"date": "2020-07-30T00:00:00", "cases": 1.3818657367044465}, {"date": "2020-07-31T00:00:00", "cases": 1.4079230218036645}, {"date": "2020-08-01T00:00:00", "cases": 1.345318352059925}, {"date": "2020-08-02T00:00:00", "cases": 1.2709156502319188}, {"date": "2020-08-03T00:00:00", "cases": 1.2008675078864353}, {"date": "2020-08-04T00:00:00", "cases": 1.1341427948233243}, {"date": "2020-08-05T00:00:00", "cases": 1.1104537861915371}, {"date": "2020-08-06T00:00:00", "cases": 1.1138821303054882}, {"date": "2020-08-07T00:00:00", "cases": 1.1095422604583962}, {"date": "2020-08-08T00:00:00", "cases": 1.1010321174434257}, {"date": "2020-08-09T00:00:00", "cases": 1.0883735506110936}, {"date": "2020-08-10T00:00:00", "cases": 1.061828772525939}, {"date": "2020-08-11T00:00:00", "cases": 1.032968333826576}, {"date": "2020-08-12T00:00:00", "cases": 1.004425036390102}, {"date": "2020-08-13T00:00:00", "cases": 0.9775986179095881}, {"date": "2020-08-14T00:00:00", "cases": 0.9393142857142857}, {"date": "2020-08-15T00:00:00", "cases": 0.9084918633967453}, {"date": "2020-08-16T00:00:00", "cases": 0.8950205785171875}, {"date": "2020-08-17T00:00:00", "cases": 0.8811852026390199}, {"date": "2020-08-18T00:00:00", "cases": 0.8923835016425355}, {"date": "2020-08-19T00:00:00", "cases": 0.9159886471144749}, {"date": "2020-08-20T00:00:00", "cases": 0.924805699481865}, {"date": "2020-08-21T00:00:00", "cases": 0.9441807607460392}, {"date": "2020-08-22T00:00:00", "cases": 0.9545299611425455}, {"date": "2020-08-23T00:00:00", "cases": 0.9543482751497624}, {"date": "2020-08-24T00:00:00", "cases": 0.9598711394355348}, {"date": "2020-08-25T00:00:00", "cases": 0.9509345794392523}, {"date": "2020-08-26T00:00:00", "cases": 0.9305813455220684}, {"date": "2020-08-27T00:00:00", "cases": 0.9090909090909092}, {"date": "2020-08-28T00:00:00", "cases": 0.9028162848387568}, {"date": "2020-08-29T00:00:00", "cases": 0.9186211004392821}, {"date": "2020-08-30T00:00:00", "cases": 0.95088257866462}, {"date": "2020-08-31T00:00:00", "cases": 0.9932539682539682}, {"date": "2020-09-01T00:00:00", "cases": 1.016162922256344}, {"date": "2020-09-02T00:00:00", "cases": 1.0284486950883451}, {"date": "2020-09-03T00:00:00", "cases": 1.0447134786117838}, {"date": "2020-09-04T00:00:00", "cases": 1.0616060727127448}, {"date": "2020-09-05T00:00:00", "cases": 1.0909018609829808}, {"date": "2020-09-06T00:00:00", "cases": 1.1141933958546772}, {"date": "2020-09-07T00:00:00", "cases": 1.1357385661310258}, {"date": "2020-09-08T00:00:00", "cases": 1.1633298208640674}, {"date": "2020-09-09T00:00:00", "cases": 1.205365604724065}, {"date": "2020-09-10T00:00:00", "cases": 1.2759937756401187}, {"date": "2020-09-11T00:00:00", "cases": 1.3480715597578399}, {"date": "2020-09-12T00:00:00", "cases": 1.3965450310559007}, {"date": "2020-09-13T00:00:00", "cases": 1.3939760493528488}, {"date": "2020-09-14T00:00:00", "cases": 1.3775498891352551}, {"date": "2020-09-15T00:00:00", "cases": 1.3550812392774245}, {"date": "2020-09-16T00:00:00", "cases": 1.3658559184618948}, {"date": "2020-09-17T00:00:00", "cases": 1.4131377993752168}, {"date": "2020-09-18T00:00:00", "cases": 1.4195404611484448}, {"date": "2020-09-19T00:00:00", "cases": 1.3965369577359894}, {"date": "2020-09-20T00:00:00", "cases": 1.3219252425208603}, {"date": "2020-09-21T00:00:00", "cases": 1.2377341111452256}, {"date": "2020-09-22T00:00:00", "cases": 1.1813362814298267}, {"date": "2020-09-23T00:00:00", "cases": 1.14419795221843}, {"date": "2020-09-24T00:00:00", "cases": 1.1298847920355117}, {"date": "2020-09-25T00:00:00", "cases": 1.106169225808052}, {"date": "2020-09-26T00:00:00", "cases": 1.0739309881460863}, {"date": "2020-09-27T00:00:00", "cases": 1.044975764354959}, {"date": "2020-09-28T00:00:00", "cases": 1.0324514590666516}, {"date": "2020-09-29T00:00:00", "cases": 1.0558383602807615}, {"date": "2020-09-30T00:00:00", "cases": 1.1126801474695565}, {"date": "2020-10-01T00:00:00", "cases": 1.2052986039873332}, {"date": "2020-10-02T00:00:00", "cases": 1.3156783389055076}, {"date": "2020-10-03T00:00:00", "cases": 1.3898647070067756}, {"date": "2020-10-04T00:00:00", "cases": 1.4139322864372064}, {"date": "2020-10-05T00:00:00", "cases": 1.4105054766133809}, {"date": "2020-10-06T00:00:00", "cases": 1.381971378895279}, {"date": "2020-10-07T00:00:00", "cases": 1.4041932181115235}, {"date": "2020-10-08T00:00:00", "cases": 1.4741446648961098}, {"date": "2020-10-09T00:00:00", "cases": 1.538689578277694}, {"date": "2020-10-10T00:00:00", "cases": 1.5811598761250363}, {"date": "2020-10-11T00:00:00", "cases": 1.5444177213812316}, {"date": "2020-10-12T00:00:00", "cases": 1.4878415353192802}, {"date": "2020-10-13T00:00:00", "cases": 1.4472899012804556}, {"date": "2020-10-14T00:00:00", "cases": 1.438269385256876}, {"date": "2020-10-15T00:00:00", "cases": 1.4802099848500863}, {"date": "2020-10-16T00:00:00", "cases": 1.5109692291753003}, {"date": "2020-10-17T00:00:00", "cases": 1.4927136714378275}, {"date": "2020-10-18T00:00:00", "cases": 1.4357169834405206}, {"date": "2020-10-19T00:00:00", "cases": 1.3661645974560135}, {"date": "2020-10-20T00:00:00", "cases": 1.307347155677075}, {"date": "2020-10-21T00:00:00", "cases": 1.2810455453045957}, {"date": "2020-10-22T00:00:00", "cases": 1.2901270475251854}, {"date": "2020-10-23T00:00:00", "cases": 1.293952233938017}, {"date": "2020-10-24T00:00:00", "cases": 1.2828895394005748}, {"date": "2020-10-25T00:00:00", "cases": 1.2530464514539181}, {"date": "2020-10-26T00:00:00", "cases": 1.207993015588563}, {"date": "2020-10-27T00:00:00", "cases": 1.1633108113566777}, {"date": "2020-10-28T00:00:00", "cases": 1.1249575196048622}, {"date": "2020-10-29T00:00:00", "cases": 1.0944052076137751}, {"date": "2020-10-30T00:00:00", "cases": 1.0511948800365167}, {"date": "2020-10-31T00:00:00", "cases": 0.9974999131914303}, {"date": "2020-11-01T00:00:00", "cases": 0.9470244855312769}, {"date": "2020-11-02T00:00:00", "cases": 0.8967344426674334}, {"date": "2020-11-03T00:00:00", "cases": 0.8462577064514816}], "data-61a2b6093f39a0fc23d95de013b945d4": [{"cases": 1}], "data-6e735da48d6abc69852f479aae4fc11a": [{"text": "Data source: Sciensano"}]}}, {"mode": "vega-lite"});
+</script>
+
+<p>To check the calculation, here are the last for values for the number of cases after applying the mean window of 7:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>df.rolling(7).mean().iloc[-8:-4]
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cases</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-10-27</th>
+      <td>16067.571429</td>
+    </tr>
+    <tr>
+      <th>2020-10-28</th>
+      <td>16135.857143</td>
+    </tr>
+    <tr>
+      <th>2020-10-29</th>
+      <td>15744.571429</td>
+    </tr>
+    <tr>
+      <th>2020-10-30</th>
+      <td>15218.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Those must be added together:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>df.rolling(7).mean().iloc[-8:-4].sum()
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>cases    63166.0
+dtype: float64
+</code></pre></div>
+<p>And here are the four values, starting four days ago:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>df.rolling(7).mean().iloc[-4:]
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cases</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-10-31</th>
+      <td>14459.428571</td>
+    </tr>
+    <tr>
+      <th>2020-11-01</th>
+      <td>14140.428571</td>
+    </tr>
+    <tr>
+      <th>2020-11-02</th>
+      <td>13213.428571</td>
+    </tr>
+    <tr>
+      <th>2020-11-03</th>
+      <td>11641.428571</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>These are added together:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>df.rolling(7).mean().iloc[-4:].sum()
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>cases    53454.714286
+dtype: float64
+</code></pre></div>
+<p>And now we divide those two sums to get the $Re(t)$ of 2020-11-03:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>df.rolling(7).mean().iloc[-4:].sum()/df.rolling(7).mean().iloc[-8:-4].sum()
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>cases    0.846258
+dtype: float64
+</code></pre></div>
+<p>This matches (as expected) the value in the graph. Let's compare with three other sources:</p>
+<ol>
+<li>Alas it does not match the calculation reported by <a href="https://twitter.com/BartMesuere">Bart Mesuere</a> on 2020-11-03 based on the RKI model that reports 0.96:</li>
+</ol>
+<blockquote>
+<p>twitter: https://twitter.com/BartMesuere/status/1323519613855059968</p>
+</blockquote>
+<ol>
+<li>
+<p>Also, the more elaborated model from <a href="https://github.com/rtcovidlive/rtlive-global">rtliveglobal</a> is not yet that optimistic. Mind that model rtlive start estimating the $Re(t)$ from the number of tests instead of the number of cases. It might be that other reporting delays are involved.</p>
+</li>
+<li>
+<p><a href="https://epiforecasts.io/covid/posts/national/belgium/">epiforecast.io</a> is already below 1 since beginning of November.</p>
+</li>
+</ol>
+<p>Another possiblity is that I made somewhere a mistake. If you spot it, please let me know.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>
+</code></pre></div>
+<!-- more -->
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+<h2 id="__comments">Comments</h2>
+
+<script src="https://giscus.app/client.js" data-repo="cast42/blog" data-repo-id="R_kgDOOJebsw" data-category="General"
+    data-category-id="DIC_kwDOOJebs84CoLBb" data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+    data-emit-metadata="0" data-input-position="bottom" data-theme="preferred_color_scheme" data-lang="en"
+    crossorigin="anonymous" async>
+    </script>
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.sections", "navigation.indexes", "navigation.top", "search.highlight", "search.suggest", "header.autohide"], "search": "../../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
