@@ -2,7 +2,7 @@
 title: About Vibe Coding
 date: 2025-05-25
 created_at: 2025-05-25T10:44:22.941081
-last_modified: 2025-05-25T10:44:22.941087
+last_modified: 2025-05-26T08:44:22.941087
 ---
 
 
@@ -10,8 +10,8 @@ last_modified: 2025-05-25T10:44:22.941087
 
 Software development is changing rapidly overnight. Indeed:
 
-1. OpenAI announced Codex [https://openai.com/index/introducing-codex/](https://openai.com/index/introducing-codex/) on May 16, 2025, for their $200/month Pro users.
-2. Microsoft GitHub Copilot released its new coding agent [2] on May 19, 2025. [https://bsky.app/profile/github.com/post/3lpjxvgje7s2k](https://bsky.app/profile/github.com/post/3lpjxvgje7s2k)
+1. OpenAI announced Codex  on May 16, 2025, for their $200/month Pro users [https://openai.com/index/introducing-codex/](https://openai.com/index/introducing-codex/).
+2. Microsoft GitHub Copilot released its new coding agent on May 19, 2025. [https://bsky.app/profile/github.com/post/3lpjxvgje7s2k](https://bsky.app/profile/github.com/post/3lpjxvgje7s2k)
 3. Google announced a tool called Jules (jules.google.com) on May 20, 2025, making it available for free and
 4. Mistral releases devstral, an open-source model for coding agents on May 21, 2025. [https://mistral.ai/news/devstral](https://mistral.ai/news/devstral)
 
