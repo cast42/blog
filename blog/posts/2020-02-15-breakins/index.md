@@ -2,11 +2,15 @@
 title: Evolution of burglary in Leuven. Is the trend downwards ?
 date: 2020-02-15
 created_at: 2020-02-15T10:44:22.941081
-last_modified: 2020-02-15T10:44:22.941087
+last_modified: 2020-02-16T08:44:22.941087
 ---
+
 # Evolution of burglary in Leuven. Is the trend downwards ?
+> Evolution of burglary in Leuven. Is the trend downwards ?
+
 
 The local police shared [a graph](https://www.politie.be/5388/nieuws/inbraken-op-leuvens-grondgebied-zijn-in-2019-opnieuw-gedaald) with the number of break-ins in Leuven per year.  The article shows a graph with a downwards trendline. Can we conclude that the number of breakins is showing a downward trend based on those numbers? Let's construct a dataframe with the data from the graph.
+
 
 ```python
 import numpy as np
@@ -18,6 +22,7 @@ df = pd.DataFrame({'year_int':[y for y in range(2006, 2020)],
 df['year'] = pd.to_datetime(df['year_int'], format='%Y')
 ```
 
+
 ```python
 points = alt.Chart(df).mark_line(point=True).encode(
     x='year', y='breakins', tooltip='breakins'
@@ -28,6 +33,10 @@ points + points.transform_regression('year', 'breakins').mark_line(
     title='Regression trend on the number breakins per year in Leuven'
 )
 ```
+
+
+
+
 
 <div id="altair-viz-649b49ee9d1f44799a0e200be12c8f06"></div>
 <script type="text/javascript">
@@ -76,10 +85,13 @@ points + points.transform_regression('year', 'breakins').mark_line(
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "layer": [{"mark": {"type": "line", "point": true}, "encoding": {"tooltip": {"type": "quantitative", "field": "breakins"}, "x": {"type": "temporal", "field": "year"}, "y": {"type": "quantitative", "field": "breakins"}}}, {"mark": {"type": "line", "color": "green"}, "encoding": {"tooltip": {"type": "quantitative", "field": "breakins"}, "x": {"type": "temporal", "field": "year"}, "y": {"type": "quantitative", "field": "breakins"}}, "title": "Regression trend on the number breakins per year in Leuven", "transform": [{"on": "year", "regression": "breakins"}]}], "data": {"name": "data-e69c4a4577c6a9d2a03c89854c9a4599"}, "$schema": "<https://vega.github.io/schema/vega-lite/v4.8.1.json>", "datasets": {"data-e69c4a4577c6a9d2a03c89854c9a4599": [{"year_int": 2006, "breakins": 1133, "year": "2006-01-01T00:00:00"}, {"year_int": 2007, "breakins": 834, "year": "2007-01-01T00:00:00"}, {"year_int": 2008, "breakins": 953, "year": "2008-01-01T00:00:00"}, {"year_int": 2009, "breakins": 891, "year": "2009-01-01T00:00:00"}, {"year_int": 2010, "breakins": 1006, "year": "2010-01-01T00:00:00"}, {"year_int": 2011, "breakins": 1218, "year": "2011-01-01T00:00:00"}, {"year_int": 2012, "breakins": 992, "year": "2012-01-01T00:00:00"}, {"year_int": 2013, "breakins": 1079, "year": "2013-01-01T00:00:00"}, {"year_int": 2014, "breakins": 1266, "year": "2014-01-01T00:00:00"}, {"year_int": 2015, "breakins": 1112, "year": "2015-01-01T00:00:00"}, {"year_int": 2016, "breakins": 713, "year": "2016-01-01T00:00:00"}, {"year_int": 2017, "breakins": 669, "year": "2017-01-01T00:00:00"}, {"year_int": 2018, "breakins": 730, "year": "2018-01-01T00:00:00"}, {"year_int": 2019, "breakins": 644, "year": "2019-01-01T00:00:00"}]}}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "layer": [{"mark": {"type": "line", "point": true}, "encoding": {"tooltip": {"type": "quantitative", "field": "breakins"}, "x": {"type": "temporal", "field": "year"}, "y": {"type": "quantitative", "field": "breakins"}}}, {"mark": {"type": "line", "color": "green"}, "encoding": {"tooltip": {"type": "quantitative", "field": "breakins"}, "x": {"type": "temporal", "field": "year"}, "y": {"type": "quantitative", "field": "breakins"}}, "title": "Regression trend on the number breakins per year in Leuven", "transform": [{"on": "year", "regression": "breakins"}]}], "data": {"name": "data-e69c4a4577c6a9d2a03c89854c9a4599"}, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-e69c4a4577c6a9d2a03c89854c9a4599": [{"year_int": 2006, "breakins": 1133, "year": "2006-01-01T00:00:00"}, {"year_int": 2007, "breakins": 834, "year": "2007-01-01T00:00:00"}, {"year_int": 2008, "breakins": 953, "year": "2008-01-01T00:00:00"}, {"year_int": 2009, "breakins": 891, "year": "2009-01-01T00:00:00"}, {"year_int": 2010, "breakins": 1006, "year": "2010-01-01T00:00:00"}, {"year_int": 2011, "breakins": 1218, "year": "2011-01-01T00:00:00"}, {"year_int": 2012, "breakins": 992, "year": "2012-01-01T00:00:00"}, {"year_int": 2013, "breakins": 1079, "year": "2013-01-01T00:00:00"}, {"year_int": 2014, "breakins": 1266, "year": "2014-01-01T00:00:00"}, {"year_int": 2015, "breakins": 1112, "year": "2015-01-01T00:00:00"}, {"year_int": 2016, "breakins": 713, "year": "2016-01-01T00:00:00"}, {"year_int": 2017, "breakins": 669, "year": "2017-01-01T00:00:00"}, {"year_int": 2018, "breakins": 730, "year": "2018-01-01T00:00:00"}, {"year_int": 2019, "breakins": 644, "year": "2019-01-01T00:00:00"}]}}, {"mode": "vega-lite"});
 </script>
 
+
+
 The article claims that the number of breakins stabilizes the last years. Let's perform a local regression to check that.
+
 
 ```python
 # https://opendatascience.com/local-regression-in-python
@@ -90,6 +102,10 @@ points + points.transform_loess('year', 'breakins').mark_line(
     title='Local regression trend on the number breakins per year in Leuven'
 )
 ```
+
+
+
+
 
 <div id="altair-viz-524d27ed46b142359cdc597a05a024eb"></div>
 <script type="text/javascript">
@@ -138,10 +154,13 @@ points + points.transform_loess('year', 'breakins').mark_line(
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "layer": [{"mark": {"type": "line", "point": true}, "encoding": {"tooltip": {"type": "quantitative", "field": "breakins"}, "x": {"type": "temporal", "field": "year"}, "y": {"type": "quantitative", "field": "breakins"}}}, {"mark": {"type": "line", "color": "green"}, "encoding": {"tooltip": {"type": "quantitative", "field": "breakins"}, "x": {"type": "temporal", "field": "year"}, "y": {"type": "quantitative", "field": "breakins"}}, "title": "Local regression trend on the number breakins per year in Leuven", "transform": [{"loess": "breakins", "on": "year"}]}], "data": {"name": "data-e69c4a4577c6a9d2a03c89854c9a4599"}, "$schema": "<https://vega.github.io/schema/vega-lite/v4.8.1.json>", "datasets": {"data-e69c4a4577c6a9d2a03c89854c9a4599": [{"year_int": 2006, "breakins": 1133, "year": "2006-01-01T00:00:00"}, {"year_int": 2007, "breakins": 834, "year": "2007-01-01T00:00:00"}, {"year_int": 2008, "breakins": 953, "year": "2008-01-01T00:00:00"}, {"year_int": 2009, "breakins": 891, "year": "2009-01-01T00:00:00"}, {"year_int": 2010, "breakins": 1006, "year": "2010-01-01T00:00:00"}, {"year_int": 2011, "breakins": 1218, "year": "2011-01-01T00:00:00"}, {"year_int": 2012, "breakins": 992, "year": "2012-01-01T00:00:00"}, {"year_int": 2013, "breakins": 1079, "year": "2013-01-01T00:00:00"}, {"year_int": 2014, "breakins": 1266, "year": "2014-01-01T00:00:00"}, {"year_int": 2015, "breakins": 1112, "year": "2015-01-01T00:00:00"}, {"year_int": 2016, "breakins": 713, "year": "2016-01-01T00:00:00"}, {"year_int": 2017, "breakins": 669, "year": "2017-01-01T00:00:00"}, {"year_int": 2018, "breakins": 730, "year": "2018-01-01T00:00:00"}, {"year_int": 2019, "breakins": 644, "year": "2019-01-01T00:00:00"}]}}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "layer": [{"mark": {"type": "line", "point": true}, "encoding": {"tooltip": {"type": "quantitative", "field": "breakins"}, "x": {"type": "temporal", "field": "year"}, "y": {"type": "quantitative", "field": "breakins"}}}, {"mark": {"type": "line", "color": "green"}, "encoding": {"tooltip": {"type": "quantitative", "field": "breakins"}, "x": {"type": "temporal", "field": "year"}, "y": {"type": "quantitative", "field": "breakins"}}, "title": "Local regression trend on the number breakins per year in Leuven", "transform": [{"loess": "breakins", "on": "year"}]}], "data": {"name": "data-e69c4a4577c6a9d2a03c89854c9a4599"}, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-e69c4a4577c6a9d2a03c89854c9a4599": [{"year_int": 2006, "breakins": 1133, "year": "2006-01-01T00:00:00"}, {"year_int": 2007, "breakins": 834, "year": "2007-01-01T00:00:00"}, {"year_int": 2008, "breakins": 953, "year": "2008-01-01T00:00:00"}, {"year_int": 2009, "breakins": 891, "year": "2009-01-01T00:00:00"}, {"year_int": 2010, "breakins": 1006, "year": "2010-01-01T00:00:00"}, {"year_int": 2011, "breakins": 1218, "year": "2011-01-01T00:00:00"}, {"year_int": 2012, "breakins": 992, "year": "2012-01-01T00:00:00"}, {"year_int": 2013, "breakins": 1079, "year": "2013-01-01T00:00:00"}, {"year_int": 2014, "breakins": 1266, "year": "2014-01-01T00:00:00"}, {"year_int": 2015, "breakins": 1112, "year": "2015-01-01T00:00:00"}, {"year_int": 2016, "breakins": 713, "year": "2016-01-01T00:00:00"}, {"year_int": 2017, "breakins": 669, "year": "2017-01-01T00:00:00"}, {"year_int": 2018, "breakins": 730, "year": "2018-01-01T00:00:00"}, {"year_int": 2019, "breakins": 644, "year": "2019-01-01T00:00:00"}]}}, {"mode": "vega-lite"});
 </script>
 
+
+
 But what about the trend line? Are we sure the trend is negative ? Bring in the code based on the blogpost [The hacker's guide to uncertainty estimates](https://erikbern.com/2018/10/08/the-hackers-guide-to-uncertainty-estimates.html) to estimate the uncertainty.:
+
 
 ```python
 # Code from: https://erikbern.com/2018/10/08/the-hackers-guide-to-uncertainty-estimates.html
@@ -181,6 +200,7 @@ def confidence_bands(xs, ys, nr_bootstrap):
     return lo, hi
 ```
 
+
 ```python
 # Make a plot with a confidence band
 df['lo'], df['hi'] = confidence_bands(df.index, df['breakins'], 100)
@@ -202,6 +222,10 @@ ci + chart  + chart.transform_regression('year', 'breakins').mark_line(
     title='95% Confidence band of the number of breakins per year in Leuven'
 )
 ```
+
+
+
+
 
 <div id="altair-viz-56dc093b04d8402a94d0ac71f2593c00"></div>
 <script type="text/javascript">
@@ -250,8 +274,10 @@ ci + chart  + chart.transform_regression('year', 'breakins').mark_line(
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "layer": [{"mark": "area", "encoding": {"color": {"value": "lightblue"}, "opacity": {"value": 0.6}, "x": {"type": "temporal", "field": "year", "title": ""}, "y": {"type": "quantitative", "field": "lo"}, "y2": {"field": "hi", "title": ""}}}, {"mark": {"type": "line", "point": true}, "encoding": {"tooltip": {"type": "quantitative", "field": "breakins"}, "x": {"type": "temporal", "field": "year"}, "y": {"type": "quantitative", "field": "breakins"}}}, {"mark": {"type": "line", "color": "red"}, "encoding": {"tooltip": {"type": "quantitative", "field": "breakins"}, "x": {"type": "temporal", "field": "year"}, "y": {"type": "quantitative", "field": "breakins"}}, "title": "95% Confidence band of the number of breakins per year in Leuven", "transform": [{"on": "year", "regression": "breakins"}]}], "data": {"name": "data-8fd2b6cf615cc0d07dec80616bd3be4e"}, "$schema": "<https://vega.github.io/schema/vega-lite/v4.8.1.json>", "datasets": {"data-8fd2b6cf615cc0d07dec80616bd3be4e": [{"year_int": 2006, "breakins": 1133, "year": "2006-01-01T00:00:00", "lo": 682.3099189747738, "hi": 1440.1937739145749}, {"year_int": 2007, "breakins": 834, "year": "2007-01-01T00:00:00", "lo": 827.6367340730125, "hi": 1486.4533262933012}, {"year_int": 2008, "breakins": 953, "year": "2008-01-01T00:00:00", "lo": 767.7635624924901, "hi": 1413.1424597103937}, {"year_int": 2009, "breakins": 891, "year": "2009-01-01T00:00:00", "lo": 790.4391898489782, "hi": 1419.3697631793243}, {"year_int": 2010, "breakins": 1006, "year": "2010-01-01T00:00:00", "lo": 708.9776311994685, "hi": 1343.5757675169857}, {"year_int": 2011, "breakins": 1218, "year": "2011-01-01T00:00:00", "lo": 727.1312799998013, "hi": 1309.4075604214133}, {"year_int": 2012, "breakins": 992, "year": "2012-01-01T00:00:00", "lo": 648.99978279176, "hi": 1290.1317136935718}, {"year_int": 2013, "breakins": 1079, "year": "2013-01-01T00:00:00", "lo": 654.8634472984102, "hi": 1235.404320558902}, {"year_int": 2014, "breakins": 1266, "year": "2014-01-01T00:00:00", "lo": 610.3003882798392, "hi": 1215.073440406832}, {"year_int": 2015, "breakins": 1112, "year": "2015-01-01T00:00:00", "lo": 577.2201952999367, "hi": 1261.770162301932}, {"year_int": 2016, "breakins": 713, "year": "2016-01-01T00:00:00", "lo": 593.6374616517471, "hi": 1220.5302754770032}, {"year_int": 2017, "breakins": 669, "year": "2017-01-01T00:00:00", "lo": 549.4776941065223, "hi": 1225.3267389185412}, {"year_int": 2018, "breakins": 730, "year": "2018-01-01T00:00:00", "lo": 506.8580347349176, "hi": 1102.1741859626663}, {"year_int": 2019, "breakins": 644, "year": "2019-01-01T00:00:00", "lo": 508.7175615577154, "hi": 1180.8263041098646}]}}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "layer": [{"mark": "area", "encoding": {"color": {"value": "lightblue"}, "opacity": {"value": 0.6}, "x": {"type": "temporal", "field": "year", "title": ""}, "y": {"type": "quantitative", "field": "lo"}, "y2": {"field": "hi", "title": ""}}}, {"mark": {"type": "line", "point": true}, "encoding": {"tooltip": {"type": "quantitative", "field": "breakins"}, "x": {"type": "temporal", "field": "year"}, "y": {"type": "quantitative", "field": "breakins"}}}, {"mark": {"type": "line", "color": "red"}, "encoding": {"tooltip": {"type": "quantitative", "field": "breakins"}, "x": {"type": "temporal", "field": "year"}, "y": {"type": "quantitative", "field": "breakins"}}, "title": "95% Confidence band of the number of breakins per year in Leuven", "transform": [{"on": "year", "regression": "breakins"}]}], "data": {"name": "data-8fd2b6cf615cc0d07dec80616bd3be4e"}, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-8fd2b6cf615cc0d07dec80616bd3be4e": [{"year_int": 2006, "breakins": 1133, "year": "2006-01-01T00:00:00", "lo": 682.3099189747738, "hi": 1440.1937739145749}, {"year_int": 2007, "breakins": 834, "year": "2007-01-01T00:00:00", "lo": 827.6367340730125, "hi": 1486.4533262933012}, {"year_int": 2008, "breakins": 953, "year": "2008-01-01T00:00:00", "lo": 767.7635624924901, "hi": 1413.1424597103937}, {"year_int": 2009, "breakins": 891, "year": "2009-01-01T00:00:00", "lo": 790.4391898489782, "hi": 1419.3697631793243}, {"year_int": 2010, "breakins": 1006, "year": "2010-01-01T00:00:00", "lo": 708.9776311994685, "hi": 1343.5757675169857}, {"year_int": 2011, "breakins": 1218, "year": "2011-01-01T00:00:00", "lo": 727.1312799998013, "hi": 1309.4075604214133}, {"year_int": 2012, "breakins": 992, "year": "2012-01-01T00:00:00", "lo": 648.99978279176, "hi": 1290.1317136935718}, {"year_int": 2013, "breakins": 1079, "year": "2013-01-01T00:00:00", "lo": 654.8634472984102, "hi": 1235.404320558902}, {"year_int": 2014, "breakins": 1266, "year": "2014-01-01T00:00:00", "lo": 610.3003882798392, "hi": 1215.073440406832}, {"year_int": 2015, "breakins": 1112, "year": "2015-01-01T00:00:00", "lo": 577.2201952999367, "hi": 1261.770162301932}, {"year_int": 2016, "breakins": 713, "year": "2016-01-01T00:00:00", "lo": 593.6374616517471, "hi": 1220.5302754770032}, {"year_int": 2017, "breakins": 669, "year": "2017-01-01T00:00:00", "lo": 549.4776941065223, "hi": 1225.3267389185412}, {"year_int": 2018, "breakins": 730, "year": "2018-01-01T00:00:00", "lo": 506.8580347349176, "hi": 1102.1741859626663}, {"year_int": 2019, "breakins": 644, "year": "2019-01-01T00:00:00", "lo": 508.7175615577154, "hi": 1180.8263041098646}]}}, {"mode": "vega-lite"});
 </script>
+
+
 
 On the above chart, we see that a possitive trend might be possible as well.
 
@@ -259,23 +285,32 @@ On the above chart, we see that a possitive trend might be possible as well.
 
 Let's perform a linear regression with statsmodel to calculate the confidence interval on the slope of the regression line.
 
+
 ```python
 import statsmodels.formula.api as smf
 ```
+
 
 ```python
 results = smf.ols('breakins ~ index', data=df.reset_index()).fit()
 ```
 
+
 ```python
 results.params
 ```
+
+
+
 
     Intercept    1096.314286
     index         -23.169231
     dtype: float64
 
+
+
 The most likely slope of the trend line is 23.17 breakins per year. But how sure are we that the trend is heading down ?
+
 
 ```python
 results.summary()
@@ -283,6 +318,10 @@ results.summary()
 
     C:\Users\lnh6dt5\AppData\Local\Continuum\anaconda3\lib\site-packages\scipy\stats\stats.py:1535: UserWarning: kurtosistest only valid for n>=20 ... continuing anyway, n=14
       "anyway, n=%i" % int(n))
+
+
+
+
 
 <table class="simpletable">
 <caption>OLS Regression Results</caption>
@@ -296,7 +335,7 @@ results.summary()
   <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   3.451</td>
 </tr>
 <tr>
-  <th>Date:</th>             <td>Sun, 19 Apr 2020</td> <th>  Prob (F-statistic):</th>  <td>0.0879</td>
+  <th>Date:</th>             <td>Sun, 19 Apr 2020</td> <th>  Prob (F-statistic):</th>  <td>0.0879</td> 
 </tr>
 <tr>
   <th>Time:</th>                 <td>10:26:45</td>     <th>  Log-Likelihood:    </th> <td> -92.105</td>
@@ -308,10 +347,10 @@ results.summary()
   <th>Df Residuals:</th>          <td>    12</td>      <th>  BIC:               </th> <td>   189.5</td>
 </tr>
 <tr>
-  <th>Df Model:</th>              <td>     1</td>      <th>                     </th>     <td> </td>
+  <th>Df Model:</th>              <td>     1</td>      <th>                     </th>     <td> </td>   
 </tr>
 <tr>
-  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
 </tr>
 </table>
 <table class="simpletable">
@@ -340,12 +379,18 @@ results.summary()
 </tr>
 </table><br/><br/>Warnings:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 
+
+
 The analysis reveals that the slope of the best fitting regression line is 23 breakins less per year. However, the confidence interval of the trend is between -50.344 and 4.006. Also the p)value of the regression coefficient is 0.088. Meaning we have eight percent chance that the negative trend is by accident. Hence, based on the current data we are not 95% percent sure the trend is downwards. Hence we can not conclude, based on this data, that there is a negative trend. This corresponds with the width of the 95% certainty band drawn that allows for an upward trend line:
+
 
 ```python
 # Here are the confidence intervals of the regression
 results.conf_int()
 ```
+
+
+
 
 <div>
 <style scoped>
@@ -384,6 +429,9 @@ results.conf_int()
 </table>
 </div>
 
+
+
+
 ```python
 y_low  = results.params['Intercept'] # ?ost likely value of the intercept
 y_high = results.params['Intercept'] + results.conf_int()[1]['index'] * df.shape[0] # Value of upward trend for the last year
@@ -404,6 +452,10 @@ points = alt.Chart(df).mark_line(point=True).encode(x='year', y='breakins', tool
     title='Trend analysis on the number of breakins per year in Leuven, Belgium'
 )
 ```
+
+
+
+
 
 <div id="altair-viz-9136ba2616714a16adfdcaf66be8277b"></div>
 <script type="text/javascript">
@@ -452,12 +504,16 @@ points = alt.Chart(df).mark_line(point=True).encode(x='year', y='breakins', tool
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "layer": [{"mark": "area", "encoding": {"color": {"value": "lightblue"}, "opacity": {"value": 0.6}, "x": {"type": "temporal", "field": "year", "title": ""}, "y": {"type": "quantitative", "field": "lo"}, "y2": {"field": "hi", "title": ""}}}, {"mark": {"type": "line", "point": true}, "encoding": {"tooltip": {"type": "quantitative", "field": "breakins"}, "x": {"type": "temporal", "field": "year"}, "y": {"type": "quantitative", "field": "breakins"}}}, {"mark": {"type": "line", "color": "red"}, "encoding": {"tooltip": {"type": "quantitative", "field": "breakins"}, "x": {"type": "temporal", "field": "year"}, "y": {"type": "quantitative", "field": "breakins"}}, "transform": [{"on": "year", "regression": "breakins"}]}, {"data": {"name": "data-4de61dc9bf5700a168cfe5e53e79ee67"}, "mark": {"type": "line", "color": "green", "strokeDash": [10, 10]}, "encoding": {"x": {"type": "temporal", "field": "year"}, "y": {"type": "quantitative", "field": "breakins", "title": "Number of breakins per year"}}}], "data": {"name": "data-8fd2b6cf615cc0d07dec80616bd3be4e"}, "title": "Trend analysis on the number of breakins per year in Leuven, Belgium", "$schema": "<https://vega.github.io/schema/vega-lite/v4.8.1.json>", "datasets": {"data-8fd2b6cf615cc0d07dec80616bd3be4e": [{"year_int": 2006, "breakins": 1133, "year": "2006-01-01T00:00:00", "lo": 682.3099189747738, "hi": 1440.1937739145749}, {"year_int": 2007, "breakins": 834, "year": "2007-01-01T00:00:00", "lo": 827.6367340730125, "hi": 1486.4533262933012}, {"year_int": 2008, "breakins": 953, "year": "2008-01-01T00:00:00", "lo": 767.7635624924901, "hi": 1413.1424597103937}, {"year_int": 2009, "breakins": 891, "year": "2009-01-01T00:00:00", "lo": 790.4391898489782, "hi": 1419.3697631793243}, {"year_int": 2010, "breakins": 1006, "year": "2010-01-01T00:00:00", "lo": 708.9776311994685, "hi": 1343.5757675169857}, {"year_int": 2011, "breakins": 1218, "year": "2011-01-01T00:00:00", "lo": 727.1312799998013, "hi": 1309.4075604214133}, {"year_int": 2012, "breakins": 992, "year": "2012-01-01T00:00:00", "lo": 648.99978279176, "hi": 1290.1317136935718}, {"year_int": 2013, "breakins": 1079, "year": "2013-01-01T00:00:00", "lo": 654.8634472984102, "hi": 1235.404320558902}, {"year_int": 2014, "breakins": 1266, "year": "2014-01-01T00:00:00", "lo": 610.3003882798392, "hi": 1215.073440406832}, {"year_int": 2015, "breakins": 1112, "year": "2015-01-01T00:00:00", "lo": 577.2201952999367, "hi": 1261.770162301932}, {"year_int": 2016, "breakins": 713, "year": "2016-01-01T00:00:00", "lo": 593.6374616517471, "hi": 1220.5302754770032}, {"year_int": 2017, "breakins": 669, "year": "2017-01-01T00:00:00", "lo": 549.4776941065223, "hi": 1225.3267389185412}, {"year_int": 2018, "breakins": 730, "year": "2018-01-01T00:00:00", "lo": 506.8580347349176, "hi": 1102.1741859626663}, {"year_int": 2019, "breakins": 644, "year": "2019-01-01T00:00:00", "lo": 508.7175615577154, "hi": 1180.8263041098646}], "data-4de61dc9bf5700a168cfe5e53e79ee67": [{"year": "2006-01-01T00:00:00", "breakins": 1096.314285714286}, {"year": "2019-01-01T00:00:00", "breakins": 1152.3967336789888}]}}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "layer": [{"mark": "area", "encoding": {"color": {"value": "lightblue"}, "opacity": {"value": 0.6}, "x": {"type": "temporal", "field": "year", "title": ""}, "y": {"type": "quantitative", "field": "lo"}, "y2": {"field": "hi", "title": ""}}}, {"mark": {"type": "line", "point": true}, "encoding": {"tooltip": {"type": "quantitative", "field": "breakins"}, "x": {"type": "temporal", "field": "year"}, "y": {"type": "quantitative", "field": "breakins"}}}, {"mark": {"type": "line", "color": "red"}, "encoding": {"tooltip": {"type": "quantitative", "field": "breakins"}, "x": {"type": "temporal", "field": "year"}, "y": {"type": "quantitative", "field": "breakins"}}, "transform": [{"on": "year", "regression": "breakins"}]}, {"data": {"name": "data-4de61dc9bf5700a168cfe5e53e79ee67"}, "mark": {"type": "line", "color": "green", "strokeDash": [10, 10]}, "encoding": {"x": {"type": "temporal", "field": "year"}, "y": {"type": "quantitative", "field": "breakins", "title": "Number of breakins per year"}}}], "data": {"name": "data-8fd2b6cf615cc0d07dec80616bd3be4e"}, "title": "Trend analysis on the number of breakins per year in Leuven, Belgium", "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-8fd2b6cf615cc0d07dec80616bd3be4e": [{"year_int": 2006, "breakins": 1133, "year": "2006-01-01T00:00:00", "lo": 682.3099189747738, "hi": 1440.1937739145749}, {"year_int": 2007, "breakins": 834, "year": "2007-01-01T00:00:00", "lo": 827.6367340730125, "hi": 1486.4533262933012}, {"year_int": 2008, "breakins": 953, "year": "2008-01-01T00:00:00", "lo": 767.7635624924901, "hi": 1413.1424597103937}, {"year_int": 2009, "breakins": 891, "year": "2009-01-01T00:00:00", "lo": 790.4391898489782, "hi": 1419.3697631793243}, {"year_int": 2010, "breakins": 1006, "year": "2010-01-01T00:00:00", "lo": 708.9776311994685, "hi": 1343.5757675169857}, {"year_int": 2011, "breakins": 1218, "year": "2011-01-01T00:00:00", "lo": 727.1312799998013, "hi": 1309.4075604214133}, {"year_int": 2012, "breakins": 992, "year": "2012-01-01T00:00:00", "lo": 648.99978279176, "hi": 1290.1317136935718}, {"year_int": 2013, "breakins": 1079, "year": "2013-01-01T00:00:00", "lo": 654.8634472984102, "hi": 1235.404320558902}, {"year_int": 2014, "breakins": 1266, "year": "2014-01-01T00:00:00", "lo": 610.3003882798392, "hi": 1215.073440406832}, {"year_int": 2015, "breakins": 1112, "year": "2015-01-01T00:00:00", "lo": 577.2201952999367, "hi": 1261.770162301932}, {"year_int": 2016, "breakins": 713, "year": "2016-01-01T00:00:00", "lo": 593.6374616517471, "hi": 1220.5302754770032}, {"year_int": 2017, "breakins": 669, "year": "2017-01-01T00:00:00", "lo": 549.4776941065223, "hi": 1225.3267389185412}, {"year_int": 2018, "breakins": 730, "year": "2018-01-01T00:00:00", "lo": 506.8580347349176, "hi": 1102.1741859626663}, {"year_int": 2019, "breakins": 644, "year": "2019-01-01T00:00:00", "lo": 508.7175615577154, "hi": 1180.8263041098646}], "data-4de61dc9bf5700a168cfe5e53e79ee67": [{"year": "2006-01-01T00:00:00", "breakins": 1096.314285714286}, {"year": "2019-01-01T00:00:00", "breakins": 1152.3967336789888}]}}, {"mode": "vega-lite"});
 </script>
 
+
+
 In the above graph, we see that a slight positive trend (green dashed line) is in the 95% confidence band on the regression coefficient. We are not sure that the trend on the number of breakins is downwards.
+
 
 ```python
 
 ```
+
 <!-- more -->

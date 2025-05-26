@@ -2,13 +2,18 @@
 title: Bullet chart in python Altair
 date: 2020-01-29
 created_at: 2020-01-29T10:44:22.941081
-last_modified: 2020-01-29T10:44:22.941087
+last_modified: 2020-01-30T08:44:22.941087
 ---
 
 # Bullet chart in python Altair
+> How to make bullet charts with Altair
 
-In the article ["Bullet Charts - What Is It And How To Use It"](https://jscharting.com/blog/bullet-charts/) I learned about Bullet charts. It's a specific kind of barchart that must convey the state of a measure or KPI. The goal is to see in a glance if the target is met.
+
+In the article ["Bullet Charts - What Is It And How To Use It"](https://jscharting.com/blog/bullet-charts/) I learned about Bullet charts. It's a specific kind of barchart that must convey the state of a measure or KPI. The goal is to see in a glance if the target is met. 
 Here is an example bullet chart from the article:
+
+
+
 
 ```python
 # This causes issues to: 
@@ -18,11 +23,13 @@ Here is an example bullet chart from the article:
 
 ![Example Bullet Chart](https://jscharting.com/blog/bullet-charts/images/bullet_components.png)
 
+
 ```python
 # <img src="https://jscharting.com/blog/bullet-charts/images/bullet_components.png" alt="Bullet chart" style="width: 200px;"/>
 ```
 
 Below is some Python code that generates bullets graphs using the [Altair](https://altair-viz.github.io/) library.
+
 
 ```python
 import altair as alt
@@ -49,6 +56,10 @@ alt.layer(
     x='independent'
 )
 ```
+
+
+
+
 
 <div id="altair-viz-c4832b7a7930443a9e3838b5ed329707"></div>
 <script type="text/javascript">

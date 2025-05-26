@@ -1,14 +1,14 @@
 ---
-title: Reconstructing Economist graph with Altair
+title: "Reconstructing Economist graph with Altair"
 date: 2022-04-18
 created_at: 2022-04-18T10:44:22.941081
-last_modified: 2022-04-18T10:44:22.941087
+last_modified: 2022-04-19T08:44:22.941087
 ---
+
 # "Reconstructing Economist graph with Altair"
+> "#30DayChartChallenge #altair #day12"
 
-\#30DayChartChallenge \#altair \#day12
-
-
+- image: images/Economist_stye%3B_30dayschartchallenge_day12.png
 
 In an Economist article ["The metamorphosis: How Jeremy Corbyn took control of Labour"](https://www.economist.com/britain/2016/08/13/the-metamorphosis), the following graph appeared:
 
@@ -504,7 +504,7 @@ alt.Chart(df).mark_bar().encode(
 ).configure_view(
     stroke=None, # Remove box around graph
 ).configure_axisY(
-    labelPadding=70,
+    labelPadding=70, 
     labelAlign='left'
 )
 ```
@@ -588,7 +588,7 @@ bars = alt.Chart(df).mark_bar().encode(
         # Based on https://stackoverflow.com/questions/66684882/color-some-x-labels-in-altair-plot
         axis=alt.Axis(labelFontSize=14, labelFontStyle=alt.condition('datum.value == "Jeremy Corbyn"', alt.value('bold'), alt.value('italic'))))
 ).properties(title={
-      "text": ["Left Click", ],
+      "text": ["Left Click", ], 
       "subtitle": ["Average number of likes per Facebook post\n", "2016, '000"],
       "align": 'left',
       "anchor": 'start'
@@ -689,4 +689,5 @@ chart
 
 
 The only thing, I could not reproduce with Altair is the light bar around the the first label and bar. For those final touches I think it's better to export the graph and add those finishing touches with a tool such as Inkscape or Illustrator.
+
 <!-- more -->

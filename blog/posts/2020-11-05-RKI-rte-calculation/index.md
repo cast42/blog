@@ -2,29 +2,27 @@
 title: Estimating the effective reproduction number in Belgium with the RKI method
 date: 2020-11-05
 created_at: 2020-11-05T10:44:22.941081
-last_modified: 2020-11-05T10:44:22.941087
+last_modified: 2020-11-06T08:44:22.941087
 ---
 
 # Estimating the effective reproduction number in Belgium with the RKI method
+> Using the Robert Koch Institute method with serial interval of 4.
 
-
-Using the Robert Koch Institute method with serial interval of 4.
 
 Every day [Bart Mesuere](https://twitter.com/BartMesuere) tweets a nice dashboard with current numbers about Covid-19 in Belgium. This was the tweet on Wednesday 20/11/04:
-
+  
   > twitter: https://twitter.com/BartMesuere/status/1323881489864548352
-
 
 It's nice to see that the effective reproduction number ($Re(t)$) is again below one. That means the power of virus is declining and the number of infection will start to lower. This occured first on Tuesday 2020/11/3:
 
    > twitter: https://twitter.com/BartMesuere/status/1323519613855059968
-
+   
 
 I estimated the $Re(t)$ earlier with [rt.live](https://github.com/rtcovidlive/covid-model) model in [this notebook](https://cast42.github.io/blog/cast42/covid19/belgium/2020/11/01/rt-be-region.html). There the $Re(t)$ was still estimated to be above one. [Michael Osthege](https://twitter.com/theCake) replied with a simulation results with furter improved [model](https://github.com/rtcovidlive/rtlive-global):
 
    > twitter: https://twitter.com/theCake/status/1323211910481874944
 
-
+   
 
 In that estimation, the $Re(t)$ was also not yet heading below one at the end of october.
 
@@ -304,9 +302,9 @@ ax.set(ylabel='Number of cases', title='Number of cases for covid-19 and number 
 ```
 
 
-
+    
 ![png](output_14_0.png)
-
+    
 
 
 We see that the last days are not yet complete. Let's cut off the last two days of reporting.
@@ -354,9 +352,9 @@ ax.set(ylabel='Number of cases', title='Number of cases for covid-19 and number 
 ```
 
 
-
+    
 ![png](output_21_0.png)
-
+    
 
 
 Select the Belgium region:
@@ -474,11 +472,11 @@ In a recent report (an der Heiden and Hamouda 2020) the RKI described their meth
 
 $$y_{s+4} | y_{s} \sim Po(R \cdot y_{s}), s= 1,2,3,4$$
 
-where $y_{1}, \ldots, y_{4}$ are considered as fixed. From this we obtain
+where $y_{1}, \ldots, y_{4}$ are considered as fixed. From this we obtain 
 
 $$\hat{R}_{RKI} = \sum_{s=1}^{4} y_{s+4} / \sum_{s=1}^{4} y_{s}$$
 
-Somewhat arbitrary, we denote by $Re(t)$ the above estimate for
+Somewhat arbitrary, we denote by $Re(t)$ the above estimate for 
 R when $s=1$ corresponds to time $t-8$, i.e. we assign the obtained value to the last of the 8 values used in the computation.
 
 In Python, we define a lambda function that we apply on a rolling window. Since indexes start from zero, we calculate:
@@ -585,9 +583,9 @@ ax.legend(['Re(t)']);
 ```
 
 
-
+    
 ![png](output_30_0.png)
-
+    
 
 
 To avoid the spikes due to weekend reporting issue, I first applied a rolling mean on a window of 7 days:
@@ -600,9 +598,9 @@ ax.legend(['Re(t)']);
 ```
 
 
-
+    
 ![png](output_32_0.png)
-
+    
 
 
 # Interactive visualisation in Altair
@@ -741,7 +739,7 @@ alt.vconcat(line + label_left + label_right + hline, source).configure(
     grid=False,
     domain=False
 ).properties(title={
-      "text": ['Effective reproduction number for the last 14 days in Belgium'],
+      "text": ['Effective reproduction number for the last 14 days in Belgium'], 
       "subtitle": [f'Estimation based on the number of cases until {today_minus_two.strftime("%Y-%m-%d")} after example of Robert Koch Institute with serial interval of 4'],
 }
 )
@@ -983,4 +981,5 @@ Another possiblity is that I made somewhere a mistake. If you spot it, please le
 ```
 
 ```
+
 <!-- more -->

@@ -1,18 +1,13 @@
 ---
-title: deads last ten year vs covid
+title: Daily covid-19 Deaths compared to average deaths the last 10 years
 date: 2020-04-19
 created_at: 2020-04-19T10:44:22.941081
-last_modified: 2020-04-19T10:44:22.941087
+last_modified: 2020-04-20T08:44:22.941087
 ---
+
 # Daily covid-19 Deaths compared to average deaths the last 10 years
 > "In this blogpost we try to get an idea of how many extra deaths we have in Belgium due to covid-19 compared to the average we had the last 10 years."
 
-- toc:true
-- branch: master
-- badges: true
-- comments: true
-- author: Lode Nachtergaele
-- categories: [cast42, jupyter, covid19, Belgium, altair]
 
 
 ```python
@@ -22,7 +17,6 @@ import altair as alt
 ```
 
 The number of deadths per day from 2008 until 2018 can obtained from [Statbel](https://statbel.fgov.be/nl), the Belgium federal bureau of statistics:
-
 
 
 ```python
@@ -1233,4 +1227,5 @@ From the above graph we see a much lower number of cases in Luxembourg, Namur, W
 ```python
 
 ```
+
 <!-- more -->

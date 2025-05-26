@@ -2,12 +2,11 @@
 title: Estimating the effective reproduction number in Belgium
 date: 2020-11-01
 created_at: 2020-11-01T10:44:22.941081
-last_modified: 2020-11-01T10:44:22.941087
+last_modified: 2020-11-02T08:44:22.941087
 ---
 
 # Estimating the effective reproduction number in Belgium
-
-Applying the Bayesian model from Rt.live on Belgium test data.
+> Applying the Bayesian model from Rt.live on Belgium test data.
 
 
 In this post we estimate the effective reproduction number of COVID-19 in the northern and southern part of Belgium. We apply the Bayesian model of rt.live on Belgian data of COVID-19 tests provided by the goverment.
@@ -485,14 +484,14 @@ ax.set(title='Number of covid-19 tests per day not attributed to a region in Bel
 ```
 
 
-
+    
 ![png](output_22_0.png)
-
+    
 
 
 
 ```
-#hide
+#hide 
 # (df_tests
 #     .fillna('Nan')
 #     .groupby(['DATE','REGION'], as_index=False)['TESTS_ALL']
@@ -510,7 +509,7 @@ ax.set(title='Number of covid-19 tests per day not attributed to a region in Bel
     Nan             1
     Wallonia       21
     Brussels       17
-                ...
+                ...  
     Wallonia    21127
     Brussels     1237
     Flanders     3515
@@ -734,9 +733,9 @@ ax.set(title=f'Number of tests for covid-19 and number of positives in {region}'
 ```
 
 
-
+    
 ![png](output_36_0.png)
-
+    
 
 
 
@@ -766,9 +765,9 @@ ax.set(title=f'Number of tests for covid-19 and number of positives in {region}'
 ```
 
 
-
+    
 ![png](output_39_0.png)
-
+    
 
 
 
@@ -893,15 +892,15 @@ sns.despine();
 ```
 
 
-
+    
 ![png](output_43_0.png)
-
+    
 
 
 
 ```
 fig, ax = plt.subplots(figsize=(12, 8))
-
+ 
 ax.set(title=f"Effective reproduction number for {region}", ylabel="$R_e(t)$")
 samples = gm.trace["r_t"]
 x = result.index
@@ -923,9 +922,9 @@ sns.despine();
 ```
 
 
-
+    
 ![png](output_44_0.png)
-
+    
 
 
 # Re(t) for Wallonia
@@ -942,9 +941,9 @@ ax.set(title=f'Number of tests for covid-19 and number of positives in {region}'
 ```
 
 
-
+    
 ![png](output_47_0.png)
-
+    
 
 
 
@@ -968,9 +967,9 @@ ax.set(title=f'Number of tests for covid-19 and number of positives in {region}'
 ```
 
 
-
+    
 ![png](output_49_0.png)
-
+    
 
 
 
@@ -1058,15 +1057,15 @@ sns.despine();
 ```
 
 
-
+    
 ![png](output_52_0.png)
-
+    
 
 
 
 ```
 fig, ax = plt.subplots(figsize=(12, 8))
-
+ 
 ax.set(title=f"Effective reproduction number for {region}", ylabel="$R_e(t)$")
 samples = gm.trace["r_t"]
 x = result.index
@@ -1088,13 +1087,14 @@ sns.despine();
 ```
 
 
-
+    
 ![png](output_53_0.png)
-
+    
 
 
 
 ```
 
 ```
+
 <!-- more -->

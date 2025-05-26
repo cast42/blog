@@ -1,12 +1,14 @@
 ---
-title: Bar chart made in Altair with Financial Times style
+title: "Bar chart made in Altair with Financial Times style"
 date: 2022-04-24
 created_at: 2022-04-24T10:44:22.941081
-last_modified: 2022-04-24T10:44:22.941087
+last_modified: 2022-04-25T08:44:22.941087
 ---
-# Bar chart made in Altair with Financial Times style
 
-\#30DayChartChallenge \#Day24 Themeday: Financial times
+# "Bar chart made in Altair with Financial Times style"
+> "#30DayChartChallenge #Day24 Themeday: Financial times"
+
+- image: images/barchart_FT_style_altair.png
 
 
 ```python
@@ -66,7 +68,7 @@ bars = alt.Chart(source).mark_bar(color='#174C7F', size=30).encode(
                          labelFontStyle='Bold',
                          tickSize=18, tickColor='lightgray'))
 ).properties(title={
-      "text": ["The biggest holders of FX reserves", ],
+      "text": ["The biggest holders of FX reserves", ], 
       "subtitle": ["Official foreign exchange reserve (Jan 2022, $tn)"],
       "align": 'left',
       "anchor": 'start'
@@ -170,7 +172,7 @@ chart
 
 # Trying to use the offical Financial Times fonts
 
-The chart looks quit similar to the original. Biggest difference is the typography. The Financial times uses its own Metric Web and Financier Display Web fonts and Altair can only use fonts available in the browser.
+The chart looks quit similar to the original. Biggest difference is the typography. The Financial times uses its own Metric Web and Financier Display Web fonts and Altair can only use fonts available in the browser. 
 
 The fonts could be made available via CSS:
 
@@ -214,7 +216,7 @@ bars = alt.Chart(source).mark_bar(color='#174C7F', size=30).encode(
                          labelFontStyle='Bold',
                          tickSize=18, tickColor='lightgray'))
 ).properties(title={
-      "text": ["The biggest holders of FX reserves", ],
+      "text": ["The biggest holders of FX reserves", ], 
       "subtitle": ["Official foreign exchange reserve (Jan 2022, $tn)"],
       "align": 'left',
       "anchor": 'start'
@@ -325,4 +327,5 @@ A second minor difference are the alignment of the 0.0 and 3.0 labels of the x-a
 ```python
 
 ```
+
 <!-- more -->

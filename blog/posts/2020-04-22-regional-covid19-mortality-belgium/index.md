@@ -1,17 +1,12 @@
 ---
-title: regional covid19 mortality belgium
+title: Regional covid-19 mortality in Belgium per gender and age
 date: 2020-04-22
 created_at: 2020-04-22T10:44:22.941081
-last_modified: 2020-04-22T10:44:22.941087
+last_modified: 2020-04-23T08:44:22.941087
 ---
+
 # Regional covid-19 mortality in Belgium per gender and age
 > Combines the mortality number of the last 10 year with those of covid-19 this year.
-- toc:true
-- branch: master
-- badges: true
-- comments: true
-- author: Lode Nachtergaele
-- categories: [cast42, jupyter, covid19, Belgium, altair]
 
 
 ```
@@ -2102,4 +2097,5 @@ alt.concat(left, middle, right, spacing=5).properties(title='Percentage of covid
 ```
 
 ```
+
 <!-- more -->
