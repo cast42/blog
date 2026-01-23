@@ -1,6 +1,6 @@
 ---
 title: "Python Minimal Boilerplate: Presentation at PUG #14"
-date: "2026-01-23"
+date: 2026-01-23
 description: "Sharing the rationale behind the Python Minimal Boilerplate at the 14th Belgian Python User Group meetup in Mechelen."
 tags: ["python", "boilerplate", "uv", "ruff", "meetup", "PUG"]
 ---
@@ -22,13 +22,13 @@ The meetup featured three insightful sessions covering data engineering, project
 Below are the slides from my talk. I discuss why a "minimal" boilerplate is essential for modern Python development and how it leverages the latest tools in the ecosystem.
 
 <div class="responsive-iframe-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin-bottom: 2em;">
-    <iframe 
-        src="https://docs.google.com/presentation/d/1JM3Yo0bXj0MsKEPuhYSUtPkbN3uaTX_SUwRZZMlSkuU/embed?start=false&loop=false&delayms=3000" 
-        frameborder="0" 
-        width="100%" 
-        height="569" 
-        allowfullscreen="true" 
-        mozallowfullscreen="true" 
+    <iframe
+        src="https://docs.google.com/presentation/d/1JM3Yo0bXj0MsKEPuhYSUtPkbN3uaTX_SUwRZZMlSkuU/embed?start=false&loop=false&delayms=3000"
+        frameborder="0"
+        width="100%"
+        height="569"
+        allowfullscreen="true"
+        mozallowfullscreen="true"
         webkitallowfullscreen="true"
         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
     </iframe>
@@ -41,3 +41,5 @@ The template is publicly available on GitHub. It is designed to be a "frictionle
 👉 **[cast42/python-minimal-boilerplate](https://github.com/cast42/python-minimal-boilerplate)**
 
 Feel free to star the repo or open an issue if you have suggestions for further improvements!
+
+<!-- more -->
