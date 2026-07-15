@@ -52,11 +52,18 @@ Because the command runs through pre-commit, a failed audit stops the commit. Th
 
 ## Alternatives
 
-I also considered the following alternatives:
+The word "trusted" needs some care in this comparison. [You shouldn't trust Trusted Publishing](https://blog.yossarian.net/2026/07/07/You-shouldnt-trust-trusted-publishing) explains that PyPI Trusted Publishing is an authentication method between a machine identity, such as a CI workflow, and a package on PyPI. It confirms that the upload was authorized for that package name. It does not confirm that the code is safe, well maintained, or free of malware. A malicious package can still be uploaded through Trusted Publishing.
 
-- [`uv-secure`](https://github.com/owenlamont/uv-secure) does not query OSV. It parses `uv.lock`, queries the PyPI JSON API for every package, and reads the vulnerability information in the PyPI package metadata. The required network allowlist is approximately `https://pypi.org` and `https://files.pythonhosted.org` if package metadata or downloads are also needed. For a project with 250 packages, `uv-secure` may make about 250 HTTPS requests. I prefer `uv audit` because it batches requests to the OSV API.
-- [`pip-audit`](https://mkennedy.codes/posts/python-supply-chain-security-made-easy/) is another option for auditing Python dependencies.
-- If all vulnerability data must come from an internally managed source, [Trivy](https://www.trivy.dev/) might be an option.
+The same limit applies to every audit tool. An audit compares package names and versions with known vulnerability reports. A clean result only means that the service returned no matching report. It does not prove that the package is trustworthy or that nobody has compromised it.
+
+The vulnerability records in the PyPI JSON API are separate from the metadata supplied by a package publisher. The [PyPI JSON API documentation](https://docs.pypi.org/api/json/#known-vulnerabilities) identifies the source of each vulnerability record, and the [Python Packaging Advisory Database](https://github.com/pypa/advisory-database) publishes its data through both PyPI and OSV. The argument about Trusted Publishing therefore does not make PyPI vulnerability records less accurate by itself. It warns against treating an authenticated upload as a safety endorsement.
+
+The distinction affects my choice as follows:
+
+- I still prefer `uv audit`. It works directly with `uv.lock`, batches lookups through OSV, and supports a custom OSV compatible service through `--service-url`. Using OSV avoids making PyPI the delivery path for the audit data, but it does not turn a clean audit into proof that a package is safe.
+- [`uv-secure`](https://github.com/owenlamont/uv-secure) parses `uv.lock` and queries the PyPI JSON API for every package. The required network allowlist is approximately `https://pypi.org` and `https://files.pythonhosted.org` if package metadata or downloads are also needed. For a project with 250 packages, it may make about 250 HTTPS requests. Its maintainer now marks it as deprecated and recommends `uv audit` for new use. Its use of PyPI is a difference in data delivery, not a stronger package trust signal.
+- [`pip-audit`](https://mkennedy.codes/posts/python-supply-chain-security-made-easy/) uses the Python Packaging Advisory Database through PyPI by default, but it can also query OSV and use a custom OSV service. It offers more choices for the vulnerability source, but it has the same limit. It finds known reports and does not establish package trust.
+- If all vulnerability data must come from an internally managed source, [Trivy](https://www.trivy.dev/) might be an option. Its vulnerability database can be copied to an internal registry or built internally. An internal copy gives an organization control over distribution and updates. The accuracy of the scan still depends on the advisory sources and the organization's update process.
 
 ## Two layers, two different moments
 
