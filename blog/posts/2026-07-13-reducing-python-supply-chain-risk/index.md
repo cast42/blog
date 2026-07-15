@@ -44,9 +44,19 @@ The second change adds `uv audit` as a local pre-commit hook:
 
 `uv audit` checks the project's dependencies for known vulnerabilities and adverse package statuses such as deprecation or quarantine. The `--locked` option also asserts that the existing `uv.lock` remains unchanged during the check.
 
+To run `uv audit` in CI, add [`https://api.osv.dev`](https://api.osv.dev/) to the network allowlist.
+
 Because the command runs through pre-commit, a failed audit stops the commit. This moves the check into the normal development loop: there is no separate security command to remember and a known issue is caught before the change reaches the repository.
 
 `uv audit` is still a relatively new and evolving part of uv. I am comfortable adopting it now based on Astral's track record with uv and Ruff, and I expect integrated auditing to become a standard check in Python projects. Its current behavior and options are documented in the [`uv audit` command reference](https://docs.astral.sh/uv/reference/cli/#uv-audit).
+
+## Alternatives
+
+I also considered the following alternatives:
+
+- [`uv-secure`](https://github.com/owenlamont/uv-secure) does not query OSV. It parses `uv.lock`, queries the PyPI JSON API for every package, and reads the vulnerability information in the PyPI package metadata. The required network allowlist is approximately `https://pypi.org` and `https://files.pythonhosted.org` if package metadata or downloads are also needed. For a project with 250 packages, `uv-secure` may make about 250 HTTPS requests. I prefer `uv audit` because it batches requests to the OSV API.
+- [`pip-audit`](https://mkennedy.codes/posts/python-supply-chain-security-made-easy/) is another option for auditing Python dependencies.
+- If all vulnerability data must come from an internally managed source, [Trivy](https://www.trivy.dev/) might be an option.
 
 ## Two layers, two different moments
 
