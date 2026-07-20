@@ -1,0 +1,1008 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="How I adapted my Markdown notes repository to Google's Open Knowledge Format without replacing the way it already worked.">
+      
+      
+      
+        <link rel="canonical" href="https://cast42.github.io/blog/2026/07/15/making-my-notes-repository-compatible-with-okf/">
+      
+      
+        <link rel="prev" href="../../13/two-small-measures-to-reduce-python-supply-chain-risk/">
+      
+      
+        <link rel="next" href="../../19/running-the-3b-unlimited-ocr-model-on-apple-silicon/">
+      
+      
+        
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="RSS feed of updated content" href="../../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Making my notes repository compatible with OKF - Blog of cast42</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#what-google-proposed" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Blog of cast42" class="md-header__button md-logo" aria-label="Blog of cast42" data-md-component="logo">
+      
+  <img src="../../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Blog of cast42
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Making my notes repository compatible with OKF
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden="">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Blog of cast42" class="md-nav__button md-logo" aria-label="Blog of cast42" data-md-component="logo">
+      
+  <img src="../../../../assets/logo.svg" alt="logo">
+
+    </a>
+    Blog of cast42
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+    
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://cast42.github.io/blog/feed_rss_updated.xml" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RSS feed
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Archive
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Archive
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2022/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2022
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2020/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2020
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6">
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Categories
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Categories
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/hello/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hello
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/world/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    World
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#what-google-proposed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Google proposed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-okf-should-help-in-the-future" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why OKF should help in the future
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#drawing-a-boundary-around-portable-knowledge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Drawing a boundary around portable knowledge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#making-each-concept-valid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Making each concept valid
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#teaching-the-notes-skill-the-new-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Teaching the notes skill the new rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-checks-without-demanding-a-perfect-archive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding checks without demanding a perfect archive
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-changed-in-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What changed in practice
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../.." class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"></path></svg>
+                        <time datetime="2026-07-15 00:00:00+00:00" class="md-ellipsis">Jul 15, 2026</time>
+                      </div>
+                    </li>
+                    
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"></path></svg>
+                          <span class="md-ellipsis">
+                            
+                              6 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+  <nav class="md-tags">
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:ai-agents" class="md-tag">ai-agents</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:knowledge-management" class="md-tag">knowledge-management</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:markdown" class="md-tag">markdown</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:open-knowledge-format" class="md-tag">open-knowledge-format</a>
+      
+    
+  </nav>
+
+
+
+  <h1>Making my notes repository compatible with OKF</h1>
+
+<p>In June 2026, Google proposed the <a href="https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing">Open Knowledge Format</a>, or OKF. I had already been keeping my notes as Markdown files in Git, so the proposal caught my attention. My setup already shared many of the same parts, but it did not follow the OKF rules. I wanted to know what I would have to change.</p>
+<p>The adaptation required less work than I expected. I kept my notes system and defined which part of the repository is portable. I also added a clear entry point, made a few file rules explicit, and taught the existing notes skill to follow them.</p>
+<!-- more -->
+
+<h2 id="what-google-proposed">What Google proposed<a class="headerlink" href="#what-google-proposed" title="Permanent link">¶</a></h2>
+<p>OKF is a small specification for packaging knowledge that humans and AI agents can both read. An OKF bundle is a directory of Markdown files. Each file describes one concept and can start with YAML frontmatter for structured fields such as <code>type</code>, <code>title</code>, <code>resource</code>, <code>tags</code>, and <code>timestamp</code>.</p>
+<p>The path of a file identifies the concept. A file at <code>metrics/weekly_active_users.md</code>, for example, has <code>metrics/weekly_active_users</code> as its concept ID. Normal Markdown links connect one concept to another. Optional <code>index.md</code> files guide readers through the directory, while optional <code>log.md</code> files record changes.</p>
+<p>The <a href="https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md">OKF 0.1 specification</a> requires only a nonempty <code>type</code> for an ordinary concept file. A producer can choose its own types, extra metadata, directory structure, and body sections. The format does not require a server, database, software development kit, or Google service.</p>
+<p>The limited scope is the main difference between OKF and many current knowledge bases. A wiki such as Confluence or Notion stores pages inside an application. The application controls page identity, links, search, access, and export. With OKF, files and the tools that read them handle those jobs. A concept is identified by its path, and a relationship is a normal file reference in a Markdown link.</p>
+<p>Some tools, including Obsidian, already store Markdown files and therefore look much closer to OKF. The difference is that OKF defines a small exchange format. Two people can use different editors, search tools, or agents and still produce bundles that other tools can read. Google describes OKF as a format rather than a service, and that distinction is the reason I adopted it.</p>
+<h2 id="why-okf-should-help-in-the-future">Why OKF should help in the future<a class="headerlink" href="#why-okf-should-help-in-the-future" title="Permanent link">¶</a></h2>
+<p>I first noticed OKF because Google introduced it, but I do not need Google to get the long term benefits. With OKF, my notes are separate from any notes application. I can replace my editor, search tool, or AI agent while keeping the same files and links.</p>
+<p>OKF should also reduce how much unrelated text an agent reads. An agent can begin with a small topic index and open only the concepts related to its task. The agent spends fewer tokens on unrelated notes, and I can inspect the path it followed when an answer is incomplete.</p>
+<p>People and agents can maintain the same knowledge through Git. Every change has a diff and a history. I can review an agent's edits before merging them, find when a claim changed, and restore an earlier version when an edit is wrong.</p>
+<p>When I add a new search tool, exporter, or agent, it can rely on the small OKF contract. The tool does not need to learn every convention in my repository before it can start. It can identify concepts by path, read their types, follow their links, and ignore the private material outside the bundle.</p>
+<p>I also get benefits if no wider OKF ecosystem appears. I must keep one concept per file, choose meaningful types, curate the indexes, and check the links. With a clear structure, I can find gaps and duplicate notes before the repository becomes harder to maintain.</p>
+<h2 id="drawing-a-boundary-around-portable-knowledge">Drawing a boundary around portable knowledge<a class="headerlink" href="#drawing-a-boundary-around-portable-knowledge" title="Permanent link">¶</a></h2>
+<p>My notes repository contains more than durable knowledge. It also contains an inbox, meeting notes, reference lists, weekly summaries, scripts, agent instructions, and private memory. Making the whole repository an OKF bundle would mix knowledge with the machinery used to collect and maintain it.</p>
+<p>I made only <a href="https://github.com/cast42/notes/tree/main/topics"><code>topics/</code></a> the OKF bundle. Everything outside that directory remains supporting material. The boundary lets me share or process the durable notes without also shipping private context or repository automation.</p>
+<p>I added the bundle structure in the commit <a href="https://github.com/cast42/notes/commit/5f14a65b78ac729516342ee1c63cb9d018b17e60">Adopt OKF knowledge bundle structure</a>. The bundle now starts at <code>topics/index.md</code>. Its frontmatter contains only the format version:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nn">---</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">okf_version</span><span class="p">:</span><span class="w"> </span><span class="s">"0.1"</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nn">---</span>
+</code></pre></div>
+<p>The rest of the file is a short map of the main topics. A person or an agent can start there, choose a topic, open its own <code>index.md</code>, and then load only the concepts needed for a task. I call this progressive disclosure. It reduces how much an agent must read before it can find a useful note.</p>
+<p>I renamed existing topic <code>README.md</code> files to <code>index.md</code> where needed and added missing topic indexes. I also added <code>topics/log.md</code> to record structural changes to the bundle. Both names are reserved by OKF, so nested index and log files do not have concept frontmatter.</p>
+<h2 id="making-each-concept-valid">Making each concept valid<a class="headerlink" href="#making-each-concept-valid" title="Permanent link">¶</a></h2>
+<p>Every other Markdown file under <code>topics/</code> now needs valid YAML frontmatter and a nonempty <code>type</code>. The rule also applies to raw source captures because they live inside the bundle.</p>
+<p>The repository already used fields such as <code>source_url</code>, <code>topics</code>, and <code>created_at</code>. I kept those fields. Rewriting every historical note would have created a large migration with little benefit. New or edited notes can add the matching OKF fields when they are useful:</p>
+<table>
+<thead>
+<tr>
+<th>Existing field</th>
+<th>OKF field</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>source</code>, <code>source_url</code>, or <code>canonical_url</code></td>
+<td><code>resource</code></td>
+</tr>
+<tr>
+<td><code>topics</code></td>
+<td><code>tags</code></td>
+</tr>
+<tr>
+<td><code>date</code> or <code>created_at</code></td>
+<td><code>timestamp</code></td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td><code>title</code></td>
+</tr>
+</tbody>
+</table>
+<p>I also changed how the repository chooses <code>type</code>. Older notes often used the broad value <code>note</code>. The updated rules prefer a more useful type such as <code>article</code>, <code>book</code>, <code>paper</code>, <code>tweet</code>, <code>video</code>, <code>concept</code>, <code>investigation</code>, or <code>procedure</code>. OKF does not prescribe those values. They are local choices that give readers more information without creating a rigid taxonomy.</p>
+<p>Links use ordinary relative Markdown paths. A concept links to <code>../knowledge_management/index.md</code>, for example, rather than using a wiki link or an application ID. If you clone or archive the bundle, the relationship remains in the files.</p>
+<h2 id="teaching-the-notes-skill-the-new-rules">Teaching the notes skill the new rules<a class="headerlink" href="#teaching-the-notes-skill-the-new-rules" title="Permanent link">¶</a></h2>
+<p>I also had to update the repository's <a href="https://github.com/cast42/notes/tree/main/.agents/skills/cast42bot-notes">notes skill</a>. The skill helps agents capture sources, create notes, choose folders, and maintain topic indexes. If agents kept following the old instructions, new files could break the OKF rules.</p>
+<p>In <a href="https://github.com/cast42/notes/commit/0eeb5bb32ff4a76fe7fc2f9ca7d25b8d0b26fc90">Adapt notes skill for OKF</a>, I changed how agents maintain the repository. An agent now starts at <code>topics/index.md</code> and reads the nearest topic index before opening many concept files. The agent classifies a file before writing it, preserves the special rules for <code>index.md</code> and <code>log.md</code>, chooses a meaningful type, and adds relative links when a relationship will help future searches.</p>
+<p>The skill also keeps the distinction between capture and durable knowledge. New material can still start in <code>inbox/</code>. A source becomes part of the OKF bundle only after it is placed under <code>topics/</code> as a useful, self contained concept. OKF compatibility did not remove the fast capture path.</p>
+<p>I updated the frontmatter normalizer too. It now skips the reserved index and log files, assigns more specific types from filenames and locations, and uses the current date instead of 1970 when a new file has no Git history.</p>
+<h2 id="adding-checks-without-demanding-a-perfect-archive">Adding checks without demanding a perfect archive<a class="headerlink" href="#adding-checks-without-demanding-a-perfect-archive" title="Permanent link">¶</a></h2>
+<p>A written convention is easy to forget, so I added <code>scripts/validate_okf.py</code>. The validator checks the parts that tools must agree on:</p>
+<ul>
+<li>The bundle root declares OKF version 0.1 and no other root metadata.</li>
+<li>Reserved index and log files have no frontmatter.</li>
+<li>Every concept has valid YAML frontmatter with a nonempty <code>type</code>.</li>
+<li>Relative Markdown links point to files that exist.</li>
+</ul>
+<p>Invalid structure or metadata fails validation. Broken links are warnings for now. The repository contains years of notes, and repairing every old link was not required to adopt the format. New work should not add warnings, while older links can be repaired over time.</p>
+<p>GitHub Actions runs the same validator when a pull request or a push changes the bundle. The local command and the automated check enforce the same contract.</p>
+<h2 id="what-changed-in-practice">What changed in practice<a class="headerlink" href="#what-changed-in-practice" title="Permanent link">¶</a></h2>
+<p>The final change was small because the repository already used Markdown, YAML frontmatter, Git, topic folders, and links. The work was mostly about turning habits into a clear contract:</p>
+<ul>
+<li><code>topics/</code> became the portable OKF bundle.</li>
+<li><code>topics/index.md</code> became its versioned entry point.</li>
+<li>Topic maps now use reserved <code>index.md</code> files.</li>
+<li>Concept files require a meaningful <code>type</code>.</li>
+<li>Existing metadata stays valid, with optional OKF aliases.</li>
+<li>Relative Markdown links form the knowledge graph.</li>
+<li>The notes skill maintains the rules during future work.</li>
+<li>A validator and GitHub Actions check catch structural errors.</li>
+</ul>
+<p>The first benefit is portability. I can give the <code>topics/</code> directory to another agent or tool without explaining the entire repository. The second benefit is discipline. The same rules that make the notes portable also make them easier to navigate, validate, and maintain.</p>
+<p>Google's proposal gave me a small shared contract for the files I already had. I can now use the repository outside the tools that created it, without moving the notes into a new application.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+<h2 id="__comments">Comments</h2>
+
+<script src="https://giscus.app/client.js" data-repo="cast42/blog" data-repo-id="R_kgDOOJebsw" data-category="General" data-category-id="DIC_kwDOOJebs84CoLBb" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="preferred_color_scheme" data-lang="en" crossorigin="anonymous" async="">
+    </script>
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.sections", "navigation.indexes", "navigation.top", "search.highlight", "search.suggest", "header.autohide"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
