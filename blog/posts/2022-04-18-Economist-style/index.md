@@ -22,6 +22,8 @@ https://medium.economist.com/mistakes-weve-drawn-a-few-8cdd8a42d368).
 
 In this article, I show how visualisation library Altair can be used to reconstruct the improved graph.
 
+<!-- more -->
+
 
 ```python
 import numpy as np
@@ -689,5 +691,3 @@ chart
 
 
 The only thing, I could not reproduce with Altair is the light bar around the the first label and bar. For those final touches I think it's better to export the graph and add those finishing touches with a tool such as Inkscape or Illustrator.
-
-<!-- more -->

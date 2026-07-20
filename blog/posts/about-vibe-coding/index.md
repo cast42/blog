@@ -17,8 +17,8 @@ Software development is changing rapidly overnight. Indeed:
 
 These new coding agents—along with Cursor, Lovable, Windsurf, V0, Bold.new, and others—are all tools that support some form of “vibe coding” (a term coined by Karpathy indicating AI-assisted coding).
 
+<!-- more -->
+
 This gives rise to a lot of FUD (fear, uncertainty, and doubt) from the corporate gatekeepers. The short-term opportunity is this: in a design thinking approach, a “research prototype” that checks the basic hypotheses (who is this product for, what problem does the product solve) can be developed much faster using vibe coding.
 
 Even with the expected “valley of disappointment” that may follow (because users tend to overreact to the initial prototype, which will likely need to be rewritten from scratch), in the end, the chance of building a product that resonates with users is much higher and it will be ready sooner—if the same good old software process is followed, from prototype to Minimum Viable Product (MVP) to Version 1 accepted by users.
-
-<!-- more -->

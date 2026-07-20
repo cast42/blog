@@ -8,6 +8,8 @@ last_modified: 2020-04-23T08:44:22.941087
 # Regional covid-19 mortality in Belgium per gender and age
 > Combines the mortality number of the last 10 year with those of covid-19 this year.
 
+<!-- more -->
+
 
 ```
 # Import pandas for data wrangling and Altair for plotting
@@ -2097,5 +2099,3 @@ alt.concat(left, middle, right, spacing=5).properties(title='Percentage of covid
 ```
 
 ```
-
-<!-- more -->

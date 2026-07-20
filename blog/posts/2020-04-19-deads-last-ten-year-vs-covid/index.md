@@ -8,6 +8,8 @@ last_modified: 2020-04-20T08:44:22.941087
 # Daily covid-19 Deaths compared to average deaths the last 10 years
 > "In this blogpost we try to get an idea of how many extra deaths we have in Belgium due to covid-19 compared to the average we had the last 10 years."
 
+<!-- more -->
+
 
 
 ```python
@@ -1227,5 +1229,3 @@ From the above graph we see a much lower number of cases in Luxembourg, Namur, W
 ```python
 
 ```
-
-<!-- more -->

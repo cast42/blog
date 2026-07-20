@@ -15,6 +15,8 @@ On 23 April 2020, I was invited for a talk at [Data science Leuven](https://www.
 I talked about how you can explore and explain the results of a clustering exercise.
 The target audience are data scientists that that have notions of how to cluster data and that want to improve their skills. 
 
+<!-- more -->
+
 The video is recorded on Youtube:
 
 > youtube: https://youtu.be/hk0arqhcX9U?t=3570
@@ -52,5 +54,3 @@ Finally, this blog is build with the awesome fastpages. I can now share a render
 ```
 
 ```
-
-<!-- more -->

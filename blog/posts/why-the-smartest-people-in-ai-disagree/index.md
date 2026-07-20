@@ -37,6 +37,8 @@ Once I started looking at the AI debate through this lens, many disagreements ma
 
 This essay is an attempt to understand those differences—not to predict who will be right about AGI, but to ask a more practical question: **how should organizations act when the technology is powerful, the future is uncertain, and the consequences are unevenly distributed?**
 
+<!-- more -->
+
 ---
 
 ## How Different Views of Success Shape Different Strategies
@@ -158,5 +160,3 @@ Used this way, AI does not diminish meaningful work. It supports it.
 
 The future will not ask whether we were clever enough to build powerful machines.  
 It will ask whether we were wise enough to use them well.
-
-<!-- more -->

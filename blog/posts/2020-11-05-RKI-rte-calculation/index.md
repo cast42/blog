@@ -34,6 +34,8 @@ In that blogpost there's a link to a website with estimations for most places in
 
 According to that calculation, $Re(t)$ is already below zero for some days.
 
+<!-- more -->
+
 # Load libraries and data
 
 
@@ -981,5 +983,3 @@ Another possiblity is that I made somewhere a mistake. If you spot it, please le
 ```
 
 ```
-
-<!-- more -->

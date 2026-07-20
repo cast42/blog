@@ -11,6 +11,8 @@ last_modified: 2020-02-16T08:44:22.941087
 
 The local police shared [a graph](https://www.politie.be/5388/nieuws/inbraken-op-leuvens-grondgebied-zijn-in-2019-opnieuw-gedaald) with the number of break-ins in Leuven per year.  The article shows a graph with a downwards trendline. Can we conclude that the number of breakins is showing a downward trend based on those numbers? Let's construct a dataframe with the data from the graph.
 
+<!-- more -->
+
 
 ```python
 import numpy as np
@@ -515,5 +517,3 @@ In the above graph, we see that a slight positive trend (green dashed line) is i
 ```python
 
 ```
-
-<!-- more -->

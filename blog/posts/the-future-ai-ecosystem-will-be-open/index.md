@@ -12,6 +12,8 @@ last_modified: 2025-05-11T10:31:24.246238
 
 I was just reading the article [The walled garden cracks: Nadella bets Microsoft’s Copilots—and Azure’s next act—on A2A/MCP interoperability](https://search.app/6hpcF) and this is how I see what's happening in the AI landscape:
 
+<!-- more -->
+
 - **Antropic**: best user experience and defined MCP ([Model Context Protocol](https://modelcontextprotocol.io/introduction))
 - **Google**: best model on all leaderboards with Gemini and defined A2A ([Agent-to-Agent](https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/))
 - **Microsoft**: let's build an open AI ecosystem with MCP and A2A, releases [supports for A2A](https://www.microsoft.com/en-us/microsoft-cloud/blog/2025/05/07/empowering-multi-agent-apps-with-the-open-agent2agent-a2a-protocol/?utm_source=chatgpt.com) and [MCP in VS Code](https://code.visualstudio.com/docs/copilot/chat/mcp-servers)
@@ -25,5 +27,3 @@ And **OpenAI**:
 - Buys ~~Cursour~~ Windsurf [OpenAI agrees to buy Windsurf for about $3 billion, Bloomberg News reports](https://www.reuters.com/business/openai-agrees-buy-windsurf-about-3-billion-bloomberg-news-reports-2025-05-06/))
 
 Seeing all those signals, we conclude: the AI future will be open!
-
-<!-- more -->

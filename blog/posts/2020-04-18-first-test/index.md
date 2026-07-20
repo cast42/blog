@@ -8,6 +8,8 @@ last_modified: 2020-04-19T08:44:22.941087
 # First test post
 > Testing a simple notebook for publishing with fastpages
 
+<!-- more -->
+
 
 
 ```python
@@ -19,5 +21,3 @@ import altair as alt
 ```python
 # Check if this get published
 ```
-
-<!-- more -->

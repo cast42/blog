@@ -21,6 +21,8 @@ The #30DayChartChallenge Day 24 calls for Financial Times themed charts. The bar
 This is the graph (without FT background) to we want to reproduce:
 ![](https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd6c748xw2pzm8.cloudfront.net%2Fprod%2Ff4926320-b74a-11ec-ac86-5174c5daccd3-standard.png?dpr=1&fit=scale-down&quality=highest&source=next&width=700 "Credit: ft.com")
 
+<!-- more -->
+
 I digitized the heights of yhe bars with [WebplotDigitizer](https://apps.automeris.io/wpd/):
 
 
@@ -327,5 +329,3 @@ A second minor difference are the alignment of the 0.0 and 3.0 labels of the x-a
 ```python
 
 ```
-
-<!-- more -->

@@ -9,6 +9,8 @@ I recently had the opportunity to present at the 14th **Belgian Python User Grou
 
 It was a fantastic evening of technical deep-dives and community networking. You can view the original meeting announcement and attendee list on [Meetup](https://www.meetup.com/python-user-group-belgium/events/312390657/).
 
+<!-- more -->
+
 ## Meetup Agenda
 
 The meetup featured three insightful sessions covering data engineering, project structure, and environment management:
@@ -41,5 +43,3 @@ The template is publicly available on GitHub. It is designed to be a "frictionle
 👉 **[cast42/python-minimal-boilerplate](https://github.com/cast42/python-minimal-boilerplate)**
 
 Feel free to star the repo or open an issue if you have suggestions for further improvements!
-
-<!-- more -->
