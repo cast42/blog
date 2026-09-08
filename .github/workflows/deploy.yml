@@ -30,5 +30,10 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Build and Deploy
+      - name: Build and Check RSS
+        run: |
+          mkdocs build
+          python scripts/check_rss.py
+
+      - name: Deploy
         run: mkdocs gh-deploy --force

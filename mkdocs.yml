@@ -5,6 +5,8 @@ site_name: Blog of cast42
 site_description: Blog of cast42
 site_url: https://cast42.github.io/blog/
 docs_dir: blog
+hooks:
+  - hooks/rss_dates.py
 
 nav:
   - Blog: index.md
@@ -43,10 +45,12 @@ plugins:
 
   - rss:
       match_path: "posts/.*"
+      use_git: false
+      image: https://cast42.github.io/blog/assets/lode_nachtergaele.jpeg
       comments_path: "#__comments"
       date_from_meta:
-        as_creation: date.created
-        as_update: date.updated
+        as_creation: rss_created
+        as_update: rss_updated
 
 
 # https://squidfunk.github.io/mkdocs-material/setup/extensions/
