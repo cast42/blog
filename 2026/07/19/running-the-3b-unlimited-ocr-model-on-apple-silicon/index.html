@@ -1,0 +1,1043 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Baidu's 3B OCR model ranks near the top of document benchmarks and runs locally on Apple Silicon through MLX VLM.">
+      
+      
+      
+        <link rel="canonical" href="https://cast42.github.io/blog/2026/07/19/running-the-3b-unlimited-ocr-model-on-apple-silicon/">
+      
+      
+        <link rel="prev" href="../../15/making-my-notes-repository-compatible-with-okf/">
+      
+      
+        <link rel="next" href="../../20/documenting-cognitive-patterns-for-better-human-and-ai-collaboration/">
+      
+      
+        
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="RSS feed of updated content" href="../../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Running the 3B Unlimited OCR model on Apple Silicon - Blog of cast42</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#running-the-3b-unlimited-ocr-model-on-apple-silicon" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Blog of cast42" class="md-header__button md-logo" aria-label="Blog of cast42" data-md-component="logo">
+      
+  <img src="../../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Blog of cast42
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Running the 3B Unlimited OCR model on Apple Silicon
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden="">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Blog of cast42" class="md-nav__button md-logo" aria-label="Blog of cast42" data-md-component="logo">
+      
+  <img src="../../../../assets/logo.svg" alt="logo">
+
+    </a>
+    Blog of cast42
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+    
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://cast42.github.io/blog/feed_rss_updated.xml" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RSS feed
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Archive
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Archive
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2022/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2022
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2020/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2020
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6">
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Categories
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Categories
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/hello/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hello
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/world/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    World
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#why-unlimited-ocr-is-different" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Unlimited OCR is different
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strong-results-from-a-3b-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strong results from a 3B model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-it-with-mlx-vlm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running it with MLX VLM
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#converting-pdfs-to-markdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Converting PDFs to Markdown
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-second-pass-for-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A second pass for images
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-four-page-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A four page example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#links" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Links
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../.." class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"></path></svg>
+                        <time datetime="2026-07-19 00:00:00+00:00" class="md-ellipsis">Jul 19, 2026</time>
+                      </div>
+                    </li>
+                    
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"></path></svg>
+                          <span class="md-ellipsis">
+                            
+                              5 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+  <nav class="md-tags">
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:apple-silicon" class="md-tag">apple-silicon</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:document-ai" class="md-tag">document-ai</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:mlx" class="md-tag">mlx</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:ocr" class="md-tag">ocr</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:python" class="md-tag">python</a>
+      
+    
+  </nav>
+
+
+
+<h1 id="running-the-3b-unlimited-ocr-model-on-apple-silicon">Running the 3B Unlimited OCR model on Apple Silicon<a class="headerlink" href="#running-the-3b-unlimited-ocr-model-on-apple-silicon" title="Permanent link">¶</a></h1>
+<p>Baidu released <a href="https://github.com/baidu/Unlimited-OCR">Unlimited OCR</a> in June 2026. It is a vision language model for reading complete documents. It returns text, headings, tables, formulas, reading order, and the positions of page elements. The model can also read several page images in one request.</p>
+<p>The model is small enough to run locally. It has 3 billion parameters in total, while its mixture of experts decoder uses about 500 million parameters for each token. I can run it on a MacBook Pro with an M4 chip and 24 GB of memory.</p>
+<!-- more -->
+
+<h2 id="why-unlimited-ocr-is-different">Why Unlimited OCR is different<a class="headerlink" href="#why-unlimited-ocr-is-different" title="Permanent link">¶</a></h2>
+<p>Document OCR can produce a long stream of tokens. A normal transformer stores a growing key value cache as it generates that stream. Memory use rises with every token, and later tokens take longer to generate.</p>
+<p>The <a href="https://arxiv.org/abs/2606.23050">Unlimited OCR paper</a> replaces every attention layer in the decoder with Reference Sliding Window Attention. The model keeps the document image tokens and prompt available as a fixed prefix. For generated text, it keeps only a recent window. The cache used for generated text therefore has a fixed upper limit instead of growing with the output.</p>
+<p>The design builds on the visual encoder and mixture of experts decoder from DeepSeek OCR. Baidu reports that it can parse dozens of pages in one pass within a 32,768 token limit. The <a href="https://huggingface.co/baidu/Unlimited-OCR">official model card</a> provides the model weights under the MIT license.</p>
+<h2 id="strong-results-from-a-3b-model">Strong results from a 3B model<a class="headerlink" href="#strong-results-from-a-3b-model" title="Permanent link">¶</a></h2>
+<p>The authors tested Unlimited OCR on <a href="https://github.com/opendatalab/OmniDocBench">OmniDocBench</a>. The benchmark covers text recognition, formulas, tables, and reading order across several document types.</p>
+<p>The paper reports the following overall scores. A higher score is better.</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th style="text-align: right;">Total and active parameters</th>
+<th style="text-align: right;">OmniDocBench 1.5</th>
+<th style="text-align: right;">OmniDocBench 1.6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unlimited OCR</td>
+<td style="text-align: right;">3B total, 0.5B active</td>
+<td style="text-align: right;">93.23</td>
+<td style="text-align: right;">93.92</td>
+</tr>
+<tr>
+<td>Qianfan OCR</td>
+<td style="text-align: right;">4B</td>
+<td style="text-align: right;">not listed</td>
+<td style="text-align: right;">93.90</td>
+</tr>
+<tr>
+<td>DeepSeek OCR 2</td>
+<td style="text-align: right;">3B total, 0.5B active</td>
+<td style="text-align: right;">89.17</td>
+<td style="text-align: right;">90.25</td>
+</tr>
+<tr>
+<td>dots.ocr</td>
+<td style="text-align: right;">3B</td>
+<td style="text-align: right;">88.41</td>
+<td style="text-align: right;">90.77</td>
+</tr>
+<tr>
+<td>Qwen3 VL</td>
+<td style="text-align: right;">235B</td>
+<td style="text-align: right;">89.15</td>
+<td style="text-align: right;">not listed</td>
+</tr>
+</tbody>
+</table>
+<p>Unlimited OCR ranks first in both tables in the paper. The 93.92 score on version 1.6 is only slightly above Qianfan OCR, so the difference should not be overstated. A model with 3 billion total parameters still matches or exceeds much larger document models in the authors' tests. Only about 500 million parameters are active while it generates each token.</p>
+<p>The long document tests are also useful. The authors tested documents with 2 to more than 40 pages. The edit distance stayed at 0.0572 for 20 page documents and 0.1069 for documents with more than 40 pages. The authors used an internal dataset for these tests, so the scores are not an independent benchmark.</p>
+<h2 id="running-it-with-mlx-vlm">Running it with MLX VLM<a class="headerlink" href="#running-it-with-mlx-vlm" title="Permanent link">¶</a></h2>
+<p><a href="https://github.com/Blaizzy/mlx-vlm">MLX VLM</a> supports Unlimited OCR directly on Apple Silicon. It can load the original <code>baidu/Unlimited-OCR</code> checkpoint. You do not need a separate community conversion.</p>
+<p>The <a href="https://github.com/Blaizzy/mlx-vlm/blob/main/mlx_vlm/models/unlimited_ocr/README.md">Unlimited OCR documentation in MLX VLM</a> explains the prompts, image settings, page markers, command line use, and Python API. It also documents the base image mode used for PDF pages.</p>
+<p>A minimal call looks like this:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mlx_vlm.generate<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span>--model<span class="w"> </span>baidu/Unlimited-OCR<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>--image<span class="w"> </span>page.png<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span>--prompt<span class="w"> </span><span class="s2">"document parsing."</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span>--max-tokens<span class="w"> </span><span class="m">32768</span>
+</code></pre></div>
+<p>MLX VLM runs the model through Apple's MLX framework. The document and the generated text can stay on the Mac, which is useful for files that should not be sent to an OCR service.</p>
+<h2 id="converting-pdfs-to-markdown">Converting PDFs to Markdown<a class="headerlink" href="#converting-pdfs-to-markdown" title="Permanent link">¶</a></h2>
+<p>I built <a href="https://github.com/cast42/pdf2md-unlimited-ocr">cast42/pdf2md-unlimited-ocr</a> around the model. The command reads a PDF and writes Markdown with the same base filename.</p>
+<p>The converter uses the following steps:</p>
+<ol>
+<li>PDFium renders every PDF page to a temporary PNG file through <code>pypdfium2</code>.</li>
+<li>Unlimited OCR reads the page images with MLX VLM and returns grounded document content.</li>
+<li>The converter rebuilds headings, tables, page order, and links to extracted visual regions.</li>
+<li>The converter removes the temporary page images after a successful conversion.</li>
+</ol>
+<p>The project uses <a href="https://pypdfium2.readthedocs.io/">PDFium through pypdfium2</a> instead of PyMuPDF. <a href="https://pdfium.googlesource.com/pdfium/+/refs/heads/main/LICENSE">PDFium has a BSD license</a>, while <a href="https://pymupdf.readthedocs.io/en/latest/about.html#license-and-copyright">PyMuPDF uses the AGPL or a commercial license</a>.</p>
+<p>Run a normal conversion with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>uv<span class="w"> </span>run<span class="w"> </span>pdf2md-unlimited-ocr<span class="w"> </span>document.pdf
+</code></pre></div>
+<h2 id="a-second-pass-for-images">A second pass for images<a class="headerlink" href="#a-second-pass-for-images" title="Permanent link">¶</a></h2>
+<p>OCR can find the position of a photo, chart, map, or complex table, but OCR text alone does not tell a reader what the visual shows. The converter can crop each visual from the rendered page and add it to the Markdown.</p>
+<p>The optional <code>--describe-images</code> flag adds a second model pass. After OCR is complete, the command releases Unlimited OCR from memory and loads <a href="https://huggingface.co/mlx-community/gemma-4-12B-it-qat-4bit">mlx-community/gemma-4-12B-it-qat-4bit</a>. It is a 4 bit MLX version of the Gemma 4 12B model and takes about 11 GB on disk.</p>
+<p>Gemma 4 writes one or two factual sentences for each extracted visual. The command places the description below the image link in the Markdown. It does not keep Unlimited OCR and Gemma 4 in memory at the same time, which lets both passes run on my 24 GB Mac.</p>
+<p>Enable the second pass with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>uv<span class="w"> </span>run<span class="w"> </span>pdf2md-unlimited-ocr<span class="w"> </span>--describe-images<span class="w"> </span>document.pdf
+</code></pre></div>
+<h2 id="a-four-page-example">A four page example<a class="headerlink" href="#a-four-page-example" title="Permanent link">¶</a></h2>
+<p>I made a four page sample from the public <a href="https://assets.vlaanderen.be/image/upload/v1773667928/repositories-prd/Verkeersveiligheidsplan_Vlaanderen_2026-2030_finaal_g1bm4r.pdf">Flemish Traffic Safety Plan 2026 to 2030</a>. The sample contains a cover, a collision matrix, a photo, and a table.</p>
+<p>You can open the <a href="https://github.com/cast42/pdf2md-unlimited-ocr/blob/main/examples/unlimited-ocr-sample/sample.pdf">four page sample PDF</a> and compare it with the <a href="https://github.com/cast42/pdf2md-unlimited-ocr/blob/main/examples/unlimited-ocr-sample/sample.md">generated Markdown</a>.</p>
+<p>I generated the example with English image descriptions:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>uv<span class="w"> </span>run<span class="w"> </span>pdf2md-unlimited-ocr<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>--describe-images<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>--image-description-language<span class="w"> </span>English<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span>--force<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span>examples/unlimited-ocr-sample/sample.pdf
+</code></pre></div>
+<p>The result includes this extracted collision matrix:</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://raw.githubusercontent.com/cast42/pdf2md-unlimited-ocr/main/examples/unlimited-ocr-sample/sample_assets/page_0002_image_01.png" data-title="Collision matrix extracted from the sample PDF" data-desc-position="bottom"><img alt="Collision matrix extracted from the sample PDF" src="https://raw.githubusercontent.com/cast42/pdf2md-unlimited-ocr/main/examples/unlimited-ocr-sample/sample_assets/page_0002_image_01.png"></a></p>
+<p>Gemma 4 added this description below it:</p>
+<blockquote>
+<p>This table displays a collision matrix for the year 2024, showing the relative percentage of collisions between different types of road users, such as pedestrians, cyclists, and various motor vehicles. The data is organized in a triangular grid where the rows and columns represent different transport modes, with the "Totaal" column on the right showing the overall percentage of collisions for each mode.</p>
+</blockquote>
+<p>The generated Markdown is not perfect. OCR errors remain possible, especially in small text and dense visual layouts. The example shows that a local pipeline can recover the document structure, retain the visual, and add a description without sending the PDF to an external service.</p>
+<h2 id="links">Links<a class="headerlink" href="#links" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="https://github.com/baidu/Unlimited-OCR">Unlimited OCR source repository</a></li>
+<li><a href="https://arxiv.org/abs/2606.23050">Unlimited OCR paper</a></li>
+<li><a href="https://huggingface.co/baidu/Unlimited-OCR">Unlimited OCR model card and weights</a></li>
+<li><a href="https://github.com/opendatalab/OmniDocBench">OmniDocBench</a></li>
+<li><a href="https://github.com/Blaizzy/mlx-vlm/blob/main/mlx_vlm/models/unlimited_ocr/README.md">Unlimited OCR documentation for MLX VLM</a></li>
+<li><a href="https://github.com/cast42/pdf2md-unlimited-ocr">PDF to Markdown converter</a></li>
+<li><a href="https://huggingface.co/mlx-community/gemma-4-12B-it-qat-4bit">Gemma 4 12B MLX model</a></li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+<h2 id="__comments">Comments</h2>
+
+<script src="https://giscus.app/client.js" data-repo="cast42/blog" data-repo-id="R_kgDOOJebsw" data-category="General" data-category-id="DIC_kwDOOJebs84CoLBb" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="preferred_color_scheme" data-lang="en" crossorigin="anonymous" async="">
+    </script>
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.sections", "navigation.indexes", "navigation.top", "search.highlight", "search.suggest", "header.autohide"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
